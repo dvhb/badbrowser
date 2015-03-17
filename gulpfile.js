@@ -23,9 +23,13 @@ gulp.task('move', function () {
 });
 
 gulp.task('server', function () {
+    var host = 'localhost',
+        port = 8000;
     gulp.src('./')
         .pipe(server({
-            open: false  
+            host: host,
+            port: port,
+            open: 'http://' + host + ':' + port + '/src/index.html'
         }))    
 });
 
