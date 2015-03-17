@@ -1,0 +1,14 @@
+{
+  "name": "detect",
+  "homepage": "https://github.com/benbscholz/detect",
+  "_release": "7d702c54bb",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7d702c54bb4bee01dfae05997c31dd934bcca337"
+  },
+  "_source": "git://github.com/benbscholz/detect.git",
+  "_target": "*",
+  "_originalSource": "git://github.com/benbscholz/detect.git",
+  "_direct": true
+}

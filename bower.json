@@ -1,0 +1,20 @@
+{
+  "name": "badbrowser",
+  "version": "0.0.1",
+  "authors": [
+    "eden lane <edencore@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "detect": "git://github.com/benbscholz/detect.git"
+  }
+}
