@@ -1,10 +1,11 @@
 {
   "name": "badbrowser",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "authors": [
     "eden lane <edencore@gmail.com>"
   ],
   "license": "MIT",
+  "main": "./lib/badbrowser.js",
   "private": true,
   "ignore": [
     "**/.*",
