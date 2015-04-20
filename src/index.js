@@ -19,7 +19,7 @@ var badbrowser = (function (window, document, undefined) {
 
     var ui = window.ui,
         api = {},
-        settings,
+        settings = {},
         browsers,
         defaultBodyOverflow,
         defaults,
@@ -52,6 +52,7 @@ var badbrowser = (function (window, document, undefined) {
     defaults = {
         lang: 'en',
         template: null,
+        path: '/alerts/',
         supported: {
             chrome: 40,
             firefox: 34,
@@ -82,8 +83,13 @@ var badbrowser = (function (window, document, undefined) {
             name,
             isMobile = ui.mobile;
         
-        settings = extend(defaults, options);
+        settings = extend(settings, defaults);
+        settings = extend(settings, options);
         isMatch = check();
+
+        console.log(defaults);
+        console.log(options);
+        console.log(settings);
 
         if (!isMatch) {
             name = settings.lang;
@@ -118,19 +124,19 @@ var badbrowser = (function (window, document, undefined) {
      * @param  {Object} options  
      * @return {Object}
      */
-    function extend ( defaults, options ) {
-        var extended = {},
-            prop;
-        for (prop in defaults) {
-            if (Object.prototype.hasOwnProperty.call(defaults, prop)) {
-                extended[prop] = defaults[prop];
+    function extend (extended, options) {
+        for (var property in options) {
+            try {
+                if (options[property].constructor == Object) {
+                    extended[property] = extend(extended[property], options[property]);
+                } else {
+                    extended[property] = options[property];
+                }
+            } catch (ex) {
+                extended[property] = options[property];
             }
         }
-        for (prop in options) {
-            if (Object.prototype.hasOwnProperty.call(options, prop)) {
-                extended[prop] = options[prop];
-            }
-        }
+
         return extended;
     };
 
@@ -215,7 +221,7 @@ var badbrowser = (function (window, document, undefined) {
                         : callback(null);
                 }
             }
-            request.open('GET', './alerts/' + name + '.html', true);
+            request.open('GET', settings.path + name + '.html', true);
             request.send(null);
         };
     }
