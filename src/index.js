@@ -18,7 +18,7 @@ var badbrowser = (function (window, document, undefined) {
     'use strict'
 
     var ui = window.ui,
-        api = Object.create(null),
+        api = {},
         settings,
         browsers,
         defaults,
