@@ -87,10 +87,6 @@ var badbrowser = (function (window, document, undefined) {
         settings = extend(settings, options);
         isMatch = check();
 
-        console.log(defaults);
-        console.log(options);
-        console.log(settings);
-
         if (!isMatch) {
             name = settings.lang;
             if (isMobile) name += '.mobile';
@@ -145,11 +141,17 @@ var badbrowser = (function (window, document, undefined) {
      * Shows warning if it is not added yet and removes
      * warning if it exists
      */
-    function toggleWarning () {
-        var body, warning, warningHelper, warningContent;
+    function toggleWarning (value) {
+        var body, warning, warningHelper, warningContent, isPass;
         
         body = document.getElementsByTagName('body')[0];
         warning = body.querySelectorAll('.badbrowser'); 
+
+        isPass = getCookie('badbrowser_pass');
+        console.log('isPass?', isPass);
+
+        if (isPass)
+            return;
 
         // Remove warning if it's exists
         if (warning.length != 0) {
@@ -174,12 +176,26 @@ var badbrowser = (function (window, document, undefined) {
 
             var close = warning.querySelectorAll('.badbrowser-close')[0];
             if (close.addEventListener)
-                close.addEventListener('click', toggleWarning);
+                close.addEventListener('click', closeWarning);
             else 
-                close.attachEvent('onclick', toggleWarning);
+                close.attachEvent('onclick', closeWarning);
 
             body.appendChild(warning);
         }
+    }
+
+    function closeWarning () {
+        var expireDate = new Date();
+        expireDate.setTime(expireDate.getTime() + (30 * 24 * 60 * 60 * 1000))
+        toggleWarning(false);
+
+        document.cookie = "badbrowser_pass=true;" + "expires=" + expireDate.toUTCString();
+    }
+
+    function getCookie(name) {
+        var value = "; " + document.cookie;
+        var parts = value.split("; " + name + "=");
+        if (parts.length == 2) return parts.pop().split(";").shift();
     }
 
 
