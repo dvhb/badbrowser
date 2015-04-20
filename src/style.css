@@ -1,0 +1,38 @@
+.badbrowser{
+    background: #FFF;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: auto;
+}
+
+.badbrowser__helper{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; 
+}
+
+.badbrowser__content{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    white-space: normal;
+}
+
+.oldbrowser__browserLink{
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    width: 60px;
+    height: 66px;
+    background: url('img/badbrowser-browserLogos.png') no-repeat scroll 0 0;
+    margin: 0 10px;
+}

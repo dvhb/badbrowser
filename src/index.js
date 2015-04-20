@@ -27,6 +27,13 @@ var badbrowser = (function (window, document, undefined) {
     defaultTemplate = [
         "<h1>Your browser is not supported</h1>",
         "<p>You can continue browsing, but correct work is not guaranteed</p>",
+        "<p>",
+        "<a class='oldbrowser__browserLink' title='Download Google Chrome' style='background-position: 0px 0px;' href='https://www.google.com/chrome/' target='_blank'></a>",
+        "<a class='oldbrowser__browserLink' title='Download Mozilla Firefox' style='background-position: -60px 0px;' href='https://www.mozilla.org/ru/firefox/new/' target='_blank'></a>",
+        "<a class='oldbrowser__browserLink' title='Download Opera' style='background-position: -120px 0px;' href='http://www.opera.com/download' target='_blank'></a>",
+        "<a class='oldbrowser__browserLink' title='Download Safari' style='background-position: -180px 0px;' href='https://www.apple.com/safari/' target='_blank'></a>",
+        "<a class='oldbrowser__browserLink' title='Download Internet Explorer' style='background-position: -240px 0px;' href='https://www.microsoft.com/ie/' target='_blank'></a>",
+        "</p>",
         "<a href='#' class='badbrowser-close'>Close</a>"
     ].join("");
 
@@ -132,7 +139,7 @@ var badbrowser = (function (window, document, undefined) {
      * warning if it exists
      */
     function toggleWarning () {
-        var body, warning;
+        var body, warning, warningHelper, warningContent;
         
         body = document.getElementsByTagName('body')[0];
         warning = body.getElementsByClassName('badbrowser'); 
@@ -143,7 +150,16 @@ var badbrowser = (function (window, document, undefined) {
         } else {
             warning = document.createElement('div');
             warning.className = 'badbrowser';
-            warning.innerHTML = settings.template;
+
+            warningHelper = document.createElement('div');
+            warningHelper.className = 'badbrowser__helper';
+
+            warningContent = document.createElement('div');
+            warningContent.className = 'badbrowser__content';
+
+            warning.appendChild(warningHelper);
+            warning.appendChild(warningContent);
+            warningContent.innerHTML = settings.template;
 
             var close = warning.getElementsByClassName('badbrowser-close')[0];
             if (close.addEventListener)
