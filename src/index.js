@@ -149,7 +149,7 @@ var badbrowser = (function (window, document, undefined) {
         var body, warning, warningHelper, warningContent;
         
         body = document.getElementsByTagName('body')[0];
-        warning = body.getElementsByClassName('badbrowser'); 
+        warning = body.querySelectorAll('.badbrowser'); 
 
         // Remove warning if it's exists
         if (warning.length != 0) {
@@ -172,7 +172,7 @@ var badbrowser = (function (window, document, undefined) {
             warning.appendChild(warningContent);
             warningContent.innerHTML = settings.template;
 
-            var close = warning.getElementsByClassName('badbrowser-close')[0];
+            var close = warning.querySelectorAll('.badbrowser-close')[0];
             if (close.addEventListener)
                 close.addEventListener('click', toggleWarning);
             else 
