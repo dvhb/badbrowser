@@ -1,6 +1,6 @@
 {
   "name": "badbrowser",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "authors": [
     "eden lane <edencore@gmail.com>"
   ],
@@ -11,9 +11,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "client/lib",
-    "test",
-    "tests"
+    "src"
   ],
   "dependencies": {
     "detect": "git://github.com/benbscholz/detect.git"
