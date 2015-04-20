@@ -50,7 +50,8 @@ var badbrowser = (function (window, document, undefined) {
             ie: 9,
             opera: 26,
             android: 10,
-            safari: 6
+            safari: 6,
+            mobile: true
         }
     };
 
@@ -69,16 +70,19 @@ var badbrowser = (function (window, document, undefined) {
      * @param  {Object} options - options that will override defaults
      */
     function init (options) {
-        var isMatch;
-        settings = extend(defaults, options);
+        var isMatch,
+            name,
+            isMobile = ui.mobile;
         
-        if (!settings.template) {
-            getTemplate(settings.lang, function (text) {
+        settings = extend(defaults, options);
+        isMatch = check();
+
+        if (!isMatch) {
+            name = settings.lang;
+            if (isMobile) name += '.mobile';
+            getTemplate(name, function (text) {
                 settings.template = text || defaultTemplate;
-                isMatch = check();
-                if (!isMatch) {
-                    toggleWarning();
-                }
+                toggleWarning();
             })
         }
     };
@@ -90,11 +94,13 @@ var badbrowser = (function (window, document, undefined) {
      */
     function check () {
         var currentBrowser = browsers[ui.browser],
-            minSupported = settings.supported[currentBrowser];
+            minSupported = settings.supported[currentBrowser],
+            isMobileSupported = settings.supported.mobile === true;
 
-        return minSupported === 'not supported' 
-            ? false 
-            : parseFloat(minSupported) <= parseFloat(ui.version );
+        if (minSupported === 'not supported' || (ui.mobile && !isMobileSupported))
+            return false
+        else 
+            return parseFloat(minSupported) <= parseFloat(ui.version );
     }
 
     /**
@@ -178,7 +184,7 @@ var badbrowser = (function (window, document, undefined) {
      * @param  {String} lang - eg. 'en', 'ru'
      * @param  {Function(text)} callback - text of loaded template
      */
-    function getTemplate (locale, callback) {
+    function getTemplate (name, callback) {
         var request = getXmlHttp();
         if (request) {
             request.onreadystatechange = function () {
@@ -188,7 +194,7 @@ var badbrowser = (function (window, document, undefined) {
                         : callback(null);
                 }
             }
-            request.open('GET', './alerts/' + locale + '.html', true);
+            request.open('GET', './alerts/' + name + '.html', true);
             request.send(null);
         };
     }
