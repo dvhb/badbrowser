@@ -1,6 +1,6 @@
 {
   "name": "badbrowser",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "authors": [
     "eden lane <edencore@gmail.com>"
   ],
@@ -14,6 +14,6 @@
     "src"
   ],
   "dependencies": {
-    "detect": "git://github.com/benbscholz/detect.git"
+    "detect": "git@github.com:darcyclarke/Detect.js.git"
   }
 }

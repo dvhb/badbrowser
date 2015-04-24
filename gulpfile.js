@@ -6,7 +6,7 @@ var output = 'badbrowser.js',
     dest = './lib';
 
 var src = [
-    './src/vendor/detect/src/detect.js',
+    './src/vendor/detect/detect.js',
     './src/index.js'
 ];
 

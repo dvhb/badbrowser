@@ -1,14 +1,13 @@
 {
   "name": "detect",
-  "homepage": "https://github.com/benbscholz/detect",
-  "_release": "7d702c54bb",
+  "homepage": "https://github.com/darcyclarke/Detect.js",
+  "_release": "af10c8dc7a",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "7d702c54bb4bee01dfae05997c31dd934bcca337"
+    "commit": "af10c8dc7a8f7e1fb018319059747b92c568163a"
   },
-  "_source": "git://github.com/benbscholz/detect.git",
+  "_source": "git@github.com:darcyclarke/Detect.js.git",
   "_target": "*",
-  "_originalSource": "git://github.com/benbscholz/detect.git",
-  "_direct": true
+  "_originalSource": "git@github.com:darcyclarke/Detect.js.git"
 }

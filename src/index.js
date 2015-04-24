@@ -2,22 +2,12 @@
  * @module Browser-check
  *
  * @require detect.js
- *
- * Name of detected browser could be found here:
- *     window.ui.browser
- * Possible variants:
- *     - Internet Explorer
- *     - Chrome
- *     - Opera
- *     - Android Webkit Browser
- *     - Firefox
- *     - Safari
  * 
  */
 var badbrowser = (function (window, document, undefined) {
     'use strict'
 
-    var ui = window.ui,
+    var ua = window.detect.parse(navigator.userAgent),
         api = {},
         settings = {},
         browsers,
@@ -41,12 +31,17 @@ var badbrowser = (function (window, document, undefined) {
     // Dictionary to translate detect.js browser's name 
     // into badbrowser's settings shortcut 
     browsers = {
-        'Internet Explorer': 'ie',
+        'IE': 'ie',
+        'IE Large Screen': 'ie',
         'Chrome': 'chrome',
+        'Chrome Mobile': 'chrome',
         'Opera': 'opera',
+        'Opera Mini': 'opera',
+        'Opera Mobile': 'opera',
         'Android Webkit Browser': 'android',
         'Firefox': 'firefox',
-        'Safari': 'safari'
+        'Safari': 'safari',
+        'Mobile Safari': 'safari'
     };
 
     defaults = {
@@ -81,7 +76,7 @@ var badbrowser = (function (window, document, undefined) {
     function init (options) {
         var isMatch,
             name,
-            isMobile = ui.mobile;
+            isMobile = ua.device.type == "Mobile";
         
         settings = extend(settings, defaults);
         settings = extend(settings, options);
@@ -103,14 +98,15 @@ var badbrowser = (function (window, document, undefined) {
      * @return {Boolean} 
      */
     function check () {
-        var currentBrowser = browsers[ui.browser],
+        var currentBrowser = browsers[ua.browser.family],
             minSupported = settings.supported[currentBrowser],
+            isMobile = ua.device.type == "Mobile",
             isMobileSupported = settings.supported.mobile === true;
 
-        if (minSupported === 'not supported' || (ui.mobile && !isMobileSupported))
+        if (minSupported === 'not supported' || (isMobile && !isMobileSupported))
             return false
         else 
-            return parseFloat(minSupported) <= parseFloat(ui.version );
+            return parseFloat(minSupported) <= parseFloat(ua.browser.version );
     }
 
     /**
@@ -148,7 +144,6 @@ var badbrowser = (function (window, document, undefined) {
         warning = body.querySelectorAll('.badbrowser'); 
 
         isPass = getCookie('badbrowser_pass');
-        console.log('isPass?', isPass);
 
         if (isPass)
             return;
