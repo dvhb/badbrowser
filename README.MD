@@ -25,6 +25,9 @@ badbrowser.init({
     lang: 'en',
     // path to your html alerts
     path: '/alerts/',
+    // if `false` then user's choice will be saved in the cookies
+    // and alert window will not be showen next time
+    ignoreChoice: false,
     // Min version of browser that will be supported
     supported: {
         // user of chrome v.39 will see an alert winodw
