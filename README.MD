@@ -39,3 +39,18 @@ badbrowser.init({
     }
 })
 ```
+
+Instead of specifying *supported* property you can specify *unsupported* browsers:
+```
+badbrowser.init({
+    lang: 'en',
+    unsupported: {
+        // the same as supported.chrome = 40
+        chrome: 39,
+        // the same as supported.firefox = 34
+        firefox: 33,
+        // will show alert for any mobile browser
+        mobile: true
+    }
+})
+```
