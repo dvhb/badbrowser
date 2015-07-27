@@ -1,5 +1,6 @@
 var gulp = require('gulp'),
     concat = require('gulp-concat'),
+    ghPages = require('gulp-gh-pages'),
     server = require('gulp-webserver');
     
 var output = 'badbrowser.js',
@@ -40,6 +41,11 @@ gulp.task('server', function () {
             open: 'http://' + host + ':' + port + '/lib/index.html'
         }))    
 });
+
+gulp.task('deploy', function () {
+    return gulp.src('./lib/**/*')
+        .pipe(ghPages());    
+})
 
 gulp.task('watch', function () {
     gulp.watch(src, ['build']);    
