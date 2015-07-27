@@ -1,7 +1,7 @@
 # Bad Browser
 ## Install
 ```
-bower install path_to_repository
+bower install dvhb-badbrowser
 ```
 ## Using
 Put html for your alert windows in `/alerts/` with this pattern:
@@ -14,7 +14,7 @@ alerts/
  ...
 ```
 ```html
-<script src="../lib/badbrowser.js"></script>
+<script src="bower_components/dvhb-badbrowser/badbrowser.js"></script>
 ```
 
 Call `badbrowser.init`

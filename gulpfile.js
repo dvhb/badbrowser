@@ -44,8 +44,11 @@ gulp.task('server', function () {
 
 gulp.task('deploy', function () {
     return gulp.src('./lib/**/*')
-        .pipe(ghPages());    
+        .pipe(ghPages({
+            remoteUrl: 'git@github.com:dvhbru/dvhb-badbrowser.git'
+        }));    
 })
+
 
 gulp.task('watch', function () {
     gulp.watch(src, ['build']);    
