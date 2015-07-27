@@ -44,7 +44,7 @@ badbrowser.init({
 ```
 
 Instead of specifying *supported* property you can specify *unsupported* browsers:
-```
+```js
 badbrowser.init({
     lang: 'en',
     unsupported: {

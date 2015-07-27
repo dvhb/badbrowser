@@ -6,7 +6,6 @@
   ],
   "license": "MIT",
   "main": "./lib/badbrowser.js",
-  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
