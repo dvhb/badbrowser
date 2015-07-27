@@ -57,3 +57,6 @@ badbrowser.init({
     }
 })
 ```
+
+# LICENSE
+[MIT License](./LICENSE) © [dvhb](https://github.com/dvhbru)
