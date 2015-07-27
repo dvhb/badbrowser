@@ -1,2 +1,7 @@
 .idea
 node_modules/
+# added by GitSavvy
+.publish
+
+# added by GitSavvy
+*.sublime-workspace
