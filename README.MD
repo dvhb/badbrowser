@@ -3,6 +3,9 @@
 ```
 bower install dvhb-badbrowser
 ```
+## Demo
+http://dvhbru.github.io/dvhb-badbrowser/
+
 ## Using
 Put html for your alert windows in `/alerts/` with this pattern:
 ```
@@ -31,10 +34,12 @@ badbrowser.init({
     // Min version of browser that will be supported
     supported: {
         // user of chrome v.39 will see an alert winodw
-        chrome: 40,
-        firefox: 34,
+        chrome: 42,
+        firefox: 38,
         ie: 9,
         opera: 26,
+        opera_mini: 7,
+        safari_mobile: 7,
         android: 10,
         safari: 6,
         // if `false`, will show alert for any mobile browser
