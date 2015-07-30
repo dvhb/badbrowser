@@ -25,7 +25,7 @@ var badbrowser = (function (window, document, undefined) {
         "<a class='oldbrowser__browserLink' title='Download Safari' style='background-position: -180px 0px;' href='https://www.apple.com/safari/' target='_blank'></a>",
         "<a class='oldbrowser__browserLink' title='Download Internet Explorer' style='background-position: -240px 0px;' href='https://www.microsoft.com/ie/' target='_blank'></a>",
         "</p>",
-        "<a href='javascript;' class='badbrowser-close'>Continue</a>"
+        "<a href='javascript:;' class='badbrowser-close'>Continue</a>"
     ].join("");
 
     // Dictionary to translate detect.js browser's name 
@@ -92,14 +92,13 @@ var badbrowser = (function (window, document, undefined) {
             }
         }
 
-        console.log(settings);
-
         isMatch = check();
 
         if (!isMatch) {
             name = settings.lang;
             if (isMobile) name += '.mobile';
             getTemplate(name, function (text) {
+                debugger;
                 settings.template = text || defaultTemplate;
                 toggleWarning();
             })
