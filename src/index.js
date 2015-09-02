@@ -48,6 +48,7 @@ var badbrowser = (function (window, document, undefined) {
         lang: 'en',
         template: null,
         path: '/alerts/',
+        fullscreen: true,
         ignoreChoice: false,
         supported: {
             chrome: 42,
@@ -179,6 +180,8 @@ var badbrowser = (function (window, document, undefined) {
 
             warning = document.createElement('div');
             warning.className = 'badbrowser';
+            if (!settings.fullscreen)
+                warning.className += ' badbrowser_modal';
 
             warningHelper = document.createElement('div');
             warningHelper.className = 'badbrowser__helper';
