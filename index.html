@@ -51,6 +51,9 @@
             <pre><code class="bash">bower install dvhb-badbrowser</code></pre>
         </p>
         <p>
+        <a href="https://github.com/dvhbru/dvhb-badbrowser/blob/master/LICENSE">MIT License</a> © <a href="https://github.com/dvhbru">dvhb</a>
+        </p>
+        <p>
 <pre><code class="javascript">badbrowser.init({
     // lang of the alert window
     lang: 'en',
@@ -59,17 +62,21 @@
     // if `false` then user's choice will be saved in the cookies
     // and alert window will not be showen next time
     ignoreChoice: true,
+    // if false alert will be shown in a modal window
+    fullscrean: true,
     // Min version of browser that will be supported
     supported: {
         // user of chrome v.39 will see an alert winodw
-        chrome: 40,
-        firefox: 34,
+        chrome: 42,
+        firefox: 38,
         ie: 9,
         opera: 26,
+        opera_mini: 7,
+        safari_mobile: 7,
         android: 10,
         safari: 6,
         // if `false`, will show alert for any mobile browser
-        mobile: yes
+        mobile: true
     }
 })</code>
 </pre>
@@ -130,9 +137,6 @@
                 </div>
             </div>
         </div>
-        <p>
-            <a href="https://github.com/dvhbru/dvhb-badbrowser/blob/master/LICENSE">MIT License</a> © <a href="http://dvhb.ru/">dvhb</a>
-        </p>
     </article>
     <script>hljs.initHighlightingOnLoad();</script>
 </body>

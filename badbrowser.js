@@ -1192,7 +1192,7 @@
  * 
  */
 var badbrowser = (function (window, document, undefined) {
-    'use strict'
+    'use strict';
 
     var ua = window.detect.parse(navigator.userAgent),
         api = {},
@@ -1212,7 +1212,7 @@ var badbrowser = (function (window, document, undefined) {
         "<a class='oldbrowser__browserLink' title='Download Safari' style='background-position: -180px 0px;' href='https://www.apple.com/safari/' target='_blank'></a>",
         "<a class='oldbrowser__browserLink' title='Download Internet Explorer' style='background-position: -240px 0px;' href='https://www.microsoft.com/ie/' target='_blank'></a>",
         "</p>",
-        "<a href='javascript;' class='badbrowser-close'>Continue</a>"
+        "<a href='javascript:;' class='badbrowser-close'>Continue</a>"
     ].join("");
 
     // Dictionary to translate detect.js browser's name 
@@ -1221,26 +1221,29 @@ var badbrowser = (function (window, document, undefined) {
         'IE': 'ie',
         'IE Large Screen': 'ie',
         'Chrome': 'chrome',
-        'Chrome Mobile': 'chrome',
+        'Chrome Mobile': 'chrome_mobile',
         'Opera': 'opera',
-        'Opera Mini': 'opera',
-        'Opera Mobile': 'opera',
+        'Opera Mini': 'opera_mini',
+        'Opera Mobile': 'opera_mobile',
         'Android Webkit Browser': 'android',
         'Firefox': 'firefox',
         'Safari': 'safari',
-        'Mobile Safari': 'safari'
+        'Mobile Safari': 'safari_mobile'
     };
 
     defaults = {
         lang: 'en',
         template: null,
         path: '/alerts/',
+        fullscreen: true,
         ignoreChoice: false,
         supported: {
-            chrome: 40,
-            firefox: 34,
+            chrome: 42,
+            firefox: 38,
             ie: 9,
             opera: 26,
+            opera_mini: 7,
+            safari_mobile: 7,
             android: 10,
             safari: 6,
             mobile: true
@@ -1279,8 +1282,6 @@ var badbrowser = (function (window, document, undefined) {
             }
         }
 
-        console.log(settings);
-
         isMatch = check();
 
         if (!isMatch) {
@@ -1289,9 +1290,9 @@ var badbrowser = (function (window, document, undefined) {
             getTemplate(name, function (text) {
                 settings.template = text || defaultTemplate;
                 toggleWarning();
-            })
+            });
         }
-    };
+    }
 
 
     /**
@@ -1305,7 +1306,7 @@ var badbrowser = (function (window, document, undefined) {
             isMobileSupported = settings.supported.mobile === true;
 
         if (minSupported === 'not supported' || (isMobile && !isMobileSupported))
-            return false
+            return false;
         else 
             return parseFloat(minSupported) <= parseFloat(ua.browser.version );
     }
@@ -1331,8 +1332,15 @@ var badbrowser = (function (window, document, undefined) {
         }
 
         return extended;
-    };
+    }
 
+    function showCurrentVersion (element) {        
+        var browserEl = element.getElementsByClassName("badbrowser-user-browser")[0];
+
+        if (browserEl) { 
+            browserEl.innerHTML = ua.browser.family + " " + ua.browser.major + "." + ua.browser.minor + "." + ua.browser.patch;
+        }
+    }
 
     /**
      * Shows warning if it is not added yet and removes
@@ -1350,7 +1358,7 @@ var badbrowser = (function (window, document, undefined) {
             return;
 
         // Remove warning if it's exists
-        if (warning.length != 0) {
+        if (warning.length !== 0) {
             body.removeChild(warning[0]);
             body.style.overflow = defaultBodyOverflow;
         } else {
@@ -1359,6 +1367,8 @@ var badbrowser = (function (window, document, undefined) {
 
             warning = document.createElement('div');
             warning.className = 'badbrowser';
+            if (!settings.fullscreen)
+                warning.className += ' badbrowser_modal';
 
             warningHelper = document.createElement('div');
             warningHelper.className = 'badbrowser__helper';
@@ -1369,6 +1379,8 @@ var badbrowser = (function (window, document, undefined) {
             warning.appendChild(warningHelper);
             warning.appendChild(warningContent);
             warningContent.innerHTML = settings.template;
+
+            showCurrentVersion(warningContent);
 
             var close = warning.querySelectorAll('.badbrowser-close')[0];
             if (close.addEventListener)
@@ -1382,7 +1394,7 @@ var badbrowser = (function (window, document, undefined) {
 
     function closeWarning () {
         var expireDate = new Date();
-        expireDate.setTime(expireDate.getTime() + (30 * 24 * 60 * 60 * 1000))
+        expireDate.setTime(expireDate.getTime() + (30 * 24 * 60 * 60 * 1000));
         toggleWarning(false);
 
         document.cookie = "badbrowser_pass=true;" + "expires=" + expireDate.toUTCString();
@@ -1409,7 +1421,7 @@ var badbrowser = (function (window, document, undefined) {
         } catch (e) {
             try {
               xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            } catch (e) {
+            } catch (err) {
               xmlhttp = false;
             }
         }
@@ -1434,9 +1446,9 @@ var badbrowser = (function (window, document, undefined) {
                         ? callback(request.responseText)
                         : callback(null);
                 }
-            }
+            };
             request.open('GET', settings.path + name + '.html', true);
             request.send(null);
-        };
+        }
     }
 })(window, document);
