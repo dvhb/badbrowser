@@ -2,7 +2,7 @@
   "name": "dvhb-badbrowser",
   "version": "0.4.7",
   "authors": [
-    "eden lane <edencore@gmail.com>"
+    "DevHub <hello@dvhb.ru>"
   ],
   "license": "MIT",
   "main": "./lib/badbrowser.js",
