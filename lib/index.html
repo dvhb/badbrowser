@@ -50,8 +50,9 @@
         <p>
             The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.
             <pre><code class="bash">bower install dvhb-badbrowser</code></pre>
-            <button class="uk-button uk-button-primary" id="demo-full" onclick="demoFull()">Demo (fullscreen)</button>
-            <button class="uk-button uk-button-primary" id="demo-modal" onclick="demoModal()">Demo (modal)</button>
+            <button class="uk-button uk-button-primary" onclick="demoFull()">Demo (fullscreen)</button>
+            <button class="uk-button uk-button-primary" onclick="demoModal()">Demo (modal)</button>
+            <button class="uk-button uk-button-primary" onclick="demoLogo()">Demo (fullscreen + logo)</button>
         </p>
         <p>
         <a href="https://github.com/dvhbru/dvhb-badbrowser/blob/master/LICENSE">MIT License</a> © <a href="https://github.com/dvhbru">dvhb</a>
@@ -67,6 +68,8 @@
     ignoreChoice: true,
     // if false alert will be shown in a modal window
     fullscreen: true,
+    // can be a path to image that will be inserted to alert as a logo
+    logo: false
     // Min version of browser that will be supported
     supported: {
         // user of chrome v.39 will see an alert winodw
@@ -127,6 +130,35 @@
                 ignoreChoice: true,
                 // if false alert will be shown in a modal window
                 fullscreen: false,
+                // Min version of browser that will be supported
+                supported: {
+                    // user of chrome v.39 will see an alert winodw
+                    chrome: 100,
+                    firefox: 100,
+                    ie: 100,
+                    opera: 100,
+                    opera_mini: 100,
+                    safari_mobile: 100,
+                    android: 100,
+                    safari: 100,
+                    // if `false`, will show alert for any mobile browser
+                    mobile: false
+                }
+            })
+        }
+
+        function demoLogo () {
+            badbrowser.init({
+                // lang of the alert window
+                lang: 'en',
+                // path to your html alerts
+                path: '/alerts/',
+                // if `false` then user's choice will be saved in the cookies
+                // and alert window will not be showen next time
+                ignoreChoice: true,
+                // if false alert will be shown in a modal window
+                fullscreen: true,
+                logo: 'logo.svg',
                 // Min version of browser that will be supported
                 supported: {
                     // user of chrome v.39 will see an alert winodw

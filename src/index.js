@@ -16,7 +16,7 @@ var badbrowser = (function (window, document, undefined) {
         defaultTemplate;
 
     defaultTemplate = [
-        "<img class='badbrowser__logo'>",
+        "<img class='badbrowser__logo' src=''/>",
         "<h1>Your browser is not supported</h1>",
         "<p>You can continue browsing, but correct work is not guaranteed</p>",
         "<p>",
@@ -51,6 +51,7 @@ var badbrowser = (function (window, document, undefined) {
         path: '/alerts/',
         fullscreen: true,
         ignoreChoice: false,
+        logo: false,
         supported: {
             chrome: 42,
             firefox: 38,
@@ -189,6 +190,7 @@ var badbrowser = (function (window, document, undefined) {
                     warning.attachEvent('onclick', closeWarning);
             }
 
+
             warningHelper = document.createElement('div');
             warningHelper.className = 'badbrowser__helper';
 
@@ -198,6 +200,14 @@ var badbrowser = (function (window, document, undefined) {
             warning.appendChild(warningHelper);
             warning.appendChild(warningContent);
             warningContent.innerHTML = settings.template;
+
+            var logos = warning.getElementsByClassName('badbrowser__logo');
+            for (var i = logos.length - 1; i >= 0; i--) {
+                if (!settings.logo)
+                    logos[i].parentNode.removeChild(logos[i]);
+                else
+                    logos[i].src = settings.logo;
+            }
 
             showCurrentVersion(warningContent);
 
