@@ -16,6 +16,7 @@ var badbrowser = (function (window, document, undefined) {
         defaultTemplate;
 
     defaultTemplate = [
+        "<img class='badbrowser__logo'>",
         "<h1>Your browser is not supported</h1>",
         "<p>You can continue browsing, but correct work is not guaranteed</p>",
         "<p>",
@@ -25,7 +26,7 @@ var badbrowser = (function (window, document, undefined) {
         "<a class='oldbrowser__browserLink' title='Download Safari' style='background-position: -180px 0px;' href='https://www.apple.com/safari/' target='_blank'></a>",
         "<a class='oldbrowser__browserLink' title='Download Internet Explorer' style='background-position: -240px 0px;' href='https://www.microsoft.com/ie/' target='_blank'></a>",
         "</p>",
-        "<a href='javascript:;' class='badbrowser-close'>Continue</a>"
+        "<a href='javascript:;' class='badbrowser_close'>Continue</a>"
     ].join("");
 
     // Dictionary to translate detect.js browser's name 
@@ -159,11 +160,11 @@ var badbrowser = (function (window, document, undefined) {
      * Shows warning if it is not added yet and removes
      * warning if it exists
      */
-    function toggleWarning (value) {
+    function toggleWarning () {
         var body, warning, warningHelper, warningContent, isPass;
         
         body = document.getElementsByTagName('body')[0];
-        warning = body.querySelectorAll('.badbrowser'); 
+        warning = body.getElementsByClassName('badbrowser'); 
 
         isPass = getCookie('badbrowser_pass');
 
@@ -180,8 +181,13 @@ var badbrowser = (function (window, document, undefined) {
 
             warning = document.createElement('div');
             warning.className = 'badbrowser';
-            if (!settings.fullscreen)
+            if (!settings.fullscreen) {
                 warning.className += ' badbrowser_modal';
+                if (warning.addEventListener) 
+                    warning.addEventListener('click', closeWarning, false);
+                else
+                    warning.attachEvent('onclick', closeWarning);
+            }
 
             warningHelper = document.createElement('div');
             warningHelper.className = 'badbrowser__helper';
@@ -195,7 +201,7 @@ var badbrowser = (function (window, document, undefined) {
 
             showCurrentVersion(warningContent);
 
-            var closeBtns = warning.getElementsByClassName('badbrowser-close');
+            var closeBtns = warning.getElementsByClassName('badbrowser_close');
             for (var i = closeBtns.length - 1; i >= 0; i--) {
                 var close = closeBtns[i];
                 if (close && close.addEventListener)
@@ -208,10 +214,12 @@ var badbrowser = (function (window, document, undefined) {
         }
     }
 
-    function closeWarning () {
+    function closeWarning (event) {
+        if (event.target !== this)
+            return;
         var expireDate = new Date();
         expireDate.setTime(expireDate.getTime() + (30 * 24 * 60 * 60 * 1000));
-        toggleWarning(false);
+        toggleWarning();
 
         document.cookie = "badbrowser_pass=true;" + "expires=" + expireDate.toUTCString();
     }

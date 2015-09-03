@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Bad browser test</title>
+    <script src="badbrowser.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script>
     <link rel="stylesheet" href="style.css">
@@ -49,6 +50,8 @@
         <p>
             The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.
             <pre><code class="bash">bower install dvhb-badbrowser</code></pre>
+            <button class="uk-button uk-button-primary" id="demo-full" onclick="demoFull()">Demo (fullscreen)</button>
+            <button class="uk-button uk-button-primary" id="demo-modal" onclick="demoModal()">Demo (modal)</button>
         </p>
         <p>
         <a href="https://github.com/dvhbru/dvhb-badbrowser/blob/master/LICENSE">MIT License</a> © <a href="https://github.com/dvhbru">dvhb</a>
@@ -63,7 +66,7 @@
     // and alert window will not be showen next time
     ignoreChoice: true,
     // if false alert will be shown in a modal window
-    fullscrean: true,
+    fullscreen: true,
     // Min version of browser that will be supported
     supported: {
         // user of chrome v.39 will see an alert winodw
@@ -80,64 +83,67 @@
     }
 })</code>
 </pre>
-        </p>
-        <p>
-        Check out this examples:
-        </p>
-        <div class="uk-grid">
-            <div class="uk-width-1-3 uk-float-left">
-                <div class="uk-panel uk-panel-box">
-                    <a href="demo1.html"><h3 class="uk-panel-title">Demo 1</h3></a>
-                    <p>
-                        <b>Min. browser versions:</b> 
-                        <ul>
-                            <li><b>Chrome:</b> 40+</li>
-                            <li><b>Firefox:</b> 34+</li>
-                            <li><b>IE:</b> 9+</li>
-                            <li><b>Opera:</b> 26+</li>
-                            <li><b>Android:</b> 10+</li>
-                            <li><b>Safari:</b> 6+</li>
-                            <li><b>Mobile:</b> YES</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-            <div class="uk-width-1-3 uk-float-left">
-                <div class="uk-panel uk-panel-box">
-                    <a href="demo2.html"><h3 class="uk-panel-title">Demo 2</h3></a>
-                    <p>
-                        <b>Min. browser versions:</b> 
-                        <ul>
-                            <li><b>Chrome:</b> 40+</li>
-                            <li><b>Firefox:</b> 34+</li>
-                            <li><b>IE:</b> 9+</li>
-                            <li><b>Opera:</b> 26+</li>
-                            <li><b>Android:</b> 10+</li>
-                            <li><b>Safari:</b> 6+</li>
-                            <li><b>Mobile:</b> NO</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-            <div class="uk-width-1-3 uk-float-left" >
-                <div class="uk-panel uk-panel-box ">
-                    <a href="demo3.html"><h3 class="uk-panel-title">Demo 3</h3></a>
-                    <p>
-                        <b>Min. browser versions:</b> 
-                        <ul>
-                            <li><b>Chrome:</b> 50+</li>
-                            <li><b>Firefox:</b> 45+</li>
-                            <li><b>IE:</b> 15+</li>
-                            <li><b>Opera:</b> 40+</li>
-                            <li><b>Android:</b> 20+</li>
-                            <li><b>Safari:</b> 15+</li>
-                            <li><b>Mobile:</b> NO</li>
-                        </ul>
-                    </p>
-                </div>
-            </div>
-        </div>
+
     </article>
-    <script>hljs.initHighlightingOnLoad();</script>
+    <script>
+        hljs.initHighlightingOnLoad();
+
+        function demoFull () {
+            badbrowser.init({
+                // lang of the alert window
+                lang: 'en',
+                // path to your html alerts
+                path: '/alerts/',
+                // if `false` then user's choice will be saved in the cookies
+                // and alert window will not be showen next time
+                ignoreChoice: true,
+                // if false alert will be shown in a modal window
+                fullscreen: true,
+                // Min version of browser that will be supported
+                supported: {
+                    // user of chrome v.39 will see an alert winodw
+                    chrome: 100,
+                    firefox: 100,
+                    ie: 100,
+                    opera: 100,
+                    opera_mini: 100,
+                    safari_mobile: 100,
+                    android: 100,
+                    safari: 100,
+                    // if `false`, will show alert for any mobile browser
+                    mobile: false
+                }
+            })
+        }
+
+        function demoModal () {
+            badbrowser.init({
+                // lang of the alert window
+                lang: 'en',
+                // path to your html alerts
+                path: '/alerts/',
+                // if `false` then user's choice will be saved in the cookies
+                // and alert window will not be showen next time
+                ignoreChoice: true,
+                // if false alert will be shown in a modal window
+                fullscreen: false,
+                // Min version of browser that will be supported
+                supported: {
+                    // user of chrome v.39 will see an alert winodw
+                    chrome: 100,
+                    firefox: 100,
+                    ie: 100,
+                    opera: 100,
+                    opera_mini: 100,
+                    safari_mobile: 100,
+                    android: 100,
+                    safari: 100,
+                    // if `false`, will show alert for any mobile browser
+                    mobile: false
+                }
+            })
+        }
+
+    </script>
 </body>
 </html>
