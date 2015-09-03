@@ -195,11 +195,14 @@ var badbrowser = (function (window, document, undefined) {
 
             showCurrentVersion(warningContent);
 
-            var close = warning.querySelectorAll('.badbrowser-close')[0];
-            if (close.addEventListener)
-                close.addEventListener('click', closeWarning);
-            else 
-                close.attachEvent('onclick', closeWarning);
+            var closeBtns = warning.getElementsByClassName('badbrowser-close');
+            for (var i = closeBtns.length - 1; i >= 0; i--) {
+                var close = closeBtns[i];
+                if (close && close.addEventListener)
+                    close.addEventListener('click', closeWarning);
+                else if (close && close.attachEvent)
+                    close.attachEvent('onclick', closeWarning);
+            }
 
             body.appendChild(warning);
         }
