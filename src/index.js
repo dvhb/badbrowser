@@ -48,7 +48,7 @@ var badbrowser = (function (window, document, undefined) {
     defaults = {
         lang: 'en',
         template: null,
-        path: '/alerts/',
+        path: false,
         fullscreen: true,
         ignoreChoice: false,
         logo: false,
@@ -272,6 +272,10 @@ var badbrowser = (function (window, document, undefined) {
      * @param  {Function(text)} callback - text of loaded template
      */
     function getTemplate (name, callback) {
+        if (!settings.path) {
+            callback(null);
+            return;
+        }
         var request = getXmlHttp();
         if (request) {
             request.onreadystatechange = function () {
