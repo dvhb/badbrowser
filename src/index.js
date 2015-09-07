@@ -101,11 +101,17 @@ var badbrowser = (function (window, document, undefined) {
 
         if (!isMatch) {
             name = settings.lang;
-            if (isMobile) name += '.mobile';
-            getTemplate(name, function (text) {
-                settings.template = text || defaultTemplate;
+            if (!settings.path) {
+                settings.template = defaultTemplate;
                 toggleWarning();
-            });
+                return;
+            } else {
+                name = isMobile ? name + '.mobile' : name;
+                getTemplate(name, function (text) {
+                    settings.template = text || defaultTemplate;
+                    toggleWarning();
+                });
+            }
         }
     }
 
