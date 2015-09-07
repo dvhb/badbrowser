@@ -1235,7 +1235,7 @@ var badbrowser = (function (window, document, undefined) {
     defaults = {
         lang: 'en',
         template: null,
-        path: '/alerts/',
+        path: false,
         fullscreen: true,
         ignoreChoice: false,
         logo: false,
@@ -1288,11 +1288,17 @@ var badbrowser = (function (window, document, undefined) {
 
         if (!isMatch) {
             name = settings.lang;
-            if (isMobile) name += '.mobile';
-            getTemplate(name, function (text) {
-                settings.template = text || defaultTemplate;
+            if (!settings.path) {
+                settings.template = defaultTemplate;
                 toggleWarning();
-            });
+                return;
+            } else {
+                name = isMobile ? name + '.mobile' : name;
+                getTemplate(name, function (text) {
+                    settings.template = text || defaultTemplate;
+                    toggleWarning();
+                });
+            }
         }
     }
 
@@ -1459,6 +1465,10 @@ var badbrowser = (function (window, document, undefined) {
      * @param  {Function(text)} callback - text of loaded template
      */
     function getTemplate (name, callback) {
+        if (!settings.path) {
+            callback(null);
+            return;
+        }
         var request = getXmlHttp();
         if (request) {
             request.onreadystatechange = function () {
