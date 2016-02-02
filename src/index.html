@@ -59,18 +59,15 @@
         </p>
         <p>
 <pre><code class="javascript">badbrowser.init({
-    // lang of the alert window
-    lang: 'en',
-    // path to your html alerts. If false then default template
-    // will be used
-    path: false,
+    // path to your html alerts
+    // could be a function:
+    // function (ua) {
+    //   return '/alerts/' + lang + '.html'
+    // }
+    path: '/alerts/en.html',
     // if `false` then user's choice will be saved in the cookies
     // and alert window will not be showen next time
-    ignoreChoice: true,
-    // if false alert will be shown in a modal window
-    fullscreen: true,
-    // can be a path to image that will be inserted to alert as a logo
-    logo: false
+    ignoreChoice: false,
     // Min version of browser that will be supported
     supported: {
         // user of chrome v.39 will see an alert winodw
@@ -83,7 +80,7 @@
         android: 10,
         safari: 6,
         // if `false`, will show alert for any mobile browser
-        mobile: true
+        mobile: false
     }
 })</code>
 </pre>
@@ -94,10 +91,6 @@
 
         function demoFull () {
             badbrowser.init({
-                // lang of the alert window
-                lang: 'en',
-                // path to your html alerts
-                path: false,
                 // if `false` then user's choice will be saved in the cookies
                 // and alert window will not be showen next time
                 ignoreChoice: true,
@@ -122,10 +115,6 @@
 
         function demoModal () {
             badbrowser.init({
-                // lang of the alert window
-                lang: 'en',
-                // path to your html alerts
-                path: false,
                 // if `false` then user's choice will be saved in the cookies
                 // and alert window will not be showen next time
                 ignoreChoice: true,
@@ -150,10 +139,6 @@
 
         function demoLogo () {
             badbrowser.init({
-                // lang of the alert window
-                lang: 'en',
-                // path to your html alerts
-                path: false,
                 // if `false` then user's choice will be saved in the cookies
                 // and alert window will not be showen next time
                 ignoreChoice: true,

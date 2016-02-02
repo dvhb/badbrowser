@@ -24,10 +24,12 @@ Call `badbrowser.init`
 
 ```js
 badbrowser.init({
-    // lang of the alert window
-    lang: 'en',
     // path to your html alerts
-    path: '/alerts/',
+    // could be a function:
+    // function (ua) {
+    //   return '/alerts/' + lang + '.html'
+    // }
+    path: '/alerts/en.html',
     // if `false` then user's choice will be saved in the cookies
     // and alert window will not be showen next time
     ignoreChoice: false,
@@ -51,7 +53,6 @@ badbrowser.init({
 Instead of specifying *supported* property you can specify *unsupported* browsers:
 ```js
 badbrowser.init({
-    lang: 'en',
     unsupported: {
         // the same as supported.chrome = 40
         chrome: 39,
