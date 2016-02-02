@@ -1214,7 +1214,7 @@ var badbrowser = (function (window, document, undefined) {
         "<a class='oldbrowser__browserLink' title='Download Safari' style='background-position: -180px 0px;' href='https://www.apple.com/safari/' target='_blank'></a>",
         "<a class='oldbrowser__browserLink' title='Download Internet Explorer' style='background-position: -240px 0px;' href='https://www.microsoft.com/ie/' target='_blank'></a>",
         "</p>",
-        "<a href='javascript:;' class='badbrowser_close'>Continue</a>"
+        "<a href='javascript:;' class='badbrowser-close'>Continue</a>"
     ].join("");
 
     // Dictionary to translate detect.js browser's name 
@@ -1269,7 +1269,7 @@ var badbrowser = (function (window, document, undefined) {
      */
     function init (options) {
         var isMatch,
-            name,
+            path,
             isMobile = ua.device.type == "Mobile";
         
         settings = extend(settings, defaults);
@@ -1288,14 +1288,17 @@ var badbrowser = (function (window, document, undefined) {
         isMatch = check();
 
         if (!isMatch) {
-            name = settings.lang;
             if (!settings.path) {
                 settings.template = defaultTemplate;
                 toggleWarning();
                 return;
             } else {
-                name = isMobile ? name + '.mobile' : name;
-                getTemplate(name, function (text) {
+                if (typeof settings.path == 'function') {
+                    path = settings.path(ua);
+                } else if (typeof settings.path == 'string') {
+                    path = settings.path;
+                }
+                getTemplate(path, function (text) {
                     settings.template = text || defaultTemplate;
                     toggleWarning();
                 });
@@ -1405,7 +1408,7 @@ var badbrowser = (function (window, document, undefined) {
 
             showCurrentVersion(warningContent);
 
-            var closeBtns = warning.getElementsByClassName('badbrowser_close');
+            var closeBtns = warning.getElementsByClassName('badbrowser-close');
             for (var i = closeBtns.length - 1; i >= 0; i--) {
                 var close = closeBtns[i];
                 if (close && close.addEventListener)
@@ -1460,13 +1463,13 @@ var badbrowser = (function (window, document, undefined) {
     }
 
     /**
-     * Get template for warning winow
+     * Get template for warning window
      * 
      * @param  {String} lang - eg. 'en', 'ru'
      * @param  {Function(text)} callback - text of loaded template
      */
-    function getTemplate (name, callback) {
-        if (!settings.path) {
+    function getTemplate (path, callback) {
+        if (!path) {
             callback(null);
             return;
         }
@@ -1479,7 +1482,7 @@ var badbrowser = (function (window, document, undefined) {
                         : callback(null);
                 }
             };
-            request.open('GET', settings.path + name + '.html', true);
+            request.open('GET', path, true);
             request.send(null);
         }
     }
