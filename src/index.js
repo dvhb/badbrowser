@@ -135,8 +135,11 @@ var badbrowser = (function (window, document, undefined) {
 
         if (minSupported === 'not supported' || (isMobile && !isMobileSupported))
             return false;
-        else 
+        else if (!minSupported) {
+            return true;
+        } else {
             return parseFloat(minSupported) <= parseFloat(ua.browser.version );
+        }
     }
 
     /**
