@@ -89,12 +89,9 @@ var badbrowser = (function (window, document, undefined) {
         settings = extend(settings, options);
 
         if (settings.unsupported) {
+            settings.supported = {};
             for (var key in settings.unsupported) {
-                if (typeof settings.unsupported[key] == "number")
-                    settings.supported[key] = settings.unsupported[key] + 1;
-                else
-                if (typeof settings.unsupported[key] == "boolean")
-                    settings.supported[key] = !settings.unsupported[key];
+                settings.supported[key] = parseInt(settings.unsupported[key]) + 1;
             }
         }
 
