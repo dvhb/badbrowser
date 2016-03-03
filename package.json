@@ -1,6 +1,6 @@
 {
   "name": "dvhb-badbrowser",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The library checks user client and shows a warning if the browser version does not meet minimal requirements",
   "main": "index.js",
   "scripts": {
