@@ -1276,12 +1276,15 @@ var badbrowser = (function (window, document, undefined) {
         settings = extend(settings, options);
 
         if (settings.unsupported) {
+            settings.supported = {
+                mobile: true
+            };
             for (var key in settings.unsupported) {
-                if (typeof settings.unsupported[key] == "number")
-                    settings.supported[key] = settings.unsupported[key] + 1;
-                else
-                if (typeof settings.unsupported[key] == "boolean")
+                if (typeof settings.unsupported[key] == 'string' || typeof settings.unsupported[key] == 'number') {
+                    settings.supported[key] = parseInt(settings.unsupported[key]) + 1;
+                } else {
                     settings.supported[key] = !settings.unsupported[key];
+                }
             }
         }
 
@@ -1319,8 +1322,11 @@ var badbrowser = (function (window, document, undefined) {
 
         if (minSupported === 'not supported' || (isMobile && !isMobileSupported))
             return false;
-        else 
+        else if (!minSupported) {
+            return true;
+        } else {
             return parseFloat(minSupported) <= parseFloat(ua.browser.version );
+        }
     }
 
     /**
@@ -1347,7 +1353,7 @@ var badbrowser = (function (window, document, undefined) {
     }
 
     function showCurrentVersion (element) {        
-        var browserEl = element.getElementsByClassName("badbrowser-user-browser")[0];
+        var browserEl = element.querySelector(".badbrowser-user-browser");
 
         if (browserEl) { 
             browserEl.innerHTML = ua.browser.family + " " + ua.browser.version;
@@ -1362,10 +1368,10 @@ var badbrowser = (function (window, document, undefined) {
         var body, warning, warningHelper, warningContent, isPass;
         
         body = document.getElementsByTagName('body')[0];
-        warning = body.getElementsByClassName('badbrowser'); 
+        warning = body.querySelectorAll('.badbrowser'); 
 
         isPass = getCookie('badbrowser_pass');
-
+    
         if (isPass)
             return;
 
@@ -1398,7 +1404,7 @@ var badbrowser = (function (window, document, undefined) {
             warning.appendChild(warningContent);
             warningContent.innerHTML = settings.template;
 
-            var logos = warning.getElementsByClassName('badbrowser__logo');
+            var logos = warning.querySelectorAll('.badbrowser__logo');
             for (var i = logos.length - 1; i >= 0; i--) {
                 if (!settings.logo)
                     logos[i].parentNode.removeChild(logos[i]);
@@ -1408,7 +1414,7 @@ var badbrowser = (function (window, document, undefined) {
 
             showCurrentVersion(warningContent);
 
-            var closeBtns = warning.getElementsByClassName('badbrowser-close');
+            var closeBtns = warning.querySelectorAll('.badbrowser-close');
             for (var i = closeBtns.length - 1; i >= 0; i--) {
                 var close = closeBtns[i];
                 if (close && close.addEventListener)
