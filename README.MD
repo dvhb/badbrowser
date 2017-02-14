@@ -20,7 +20,7 @@ alerts/
 ```
 
 ```js
-import '@dvhb/badbrowser'
+import badbrowser from '@dvhb/badbrowser'
 ```
 
 Call `badbrowser.init`

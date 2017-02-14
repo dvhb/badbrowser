@@ -306,3 +306,16 @@ var badbrowser = (function (window, document, undefined) {
         }
     }
 })(window, document);
+
+if (typeof exports !== "undefined") {
+    if (typeof module !== "undefined" && module.exports) {
+        exports = module.exports = badbrowser;
+    }
+    exports.badbrowser = badbrowser;
+}
+
+if (typeof define === "function" && define.amd) {
+    define(function(require) {
+        return badbrowser;
+    });
+}

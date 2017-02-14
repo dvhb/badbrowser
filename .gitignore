@@ -5,3 +5,4 @@ node_modules/
 
 # added by GitSavvy
 *.sublime-workspace
+npm-debug.log

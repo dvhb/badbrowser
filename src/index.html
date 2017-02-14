@@ -7,13 +7,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.almost-flat.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css">
     <style>
         html {
             background-color: #f7f7f7;
             margin-top: 30px;
         }
+
         article {
         }
 
@@ -27,29 +30,42 @@
     </style>
 </head>
 <body>
-    <article class="uk-width-7-10 uk-container-center">
-        <h1>Bad Browser</h1>
-        <a class="fork-link" href="https://github.com/dvhbru/badbrowser"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
-        <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/dvhbru/badbrowser" data-icon="octicon-star" data-count-href="/dvhbru/badbrowser/stargazers" data-count-api="/repos/dvhbru/badbrowser#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star dvhbru/badbrowser on GitHub">Star</a>
-        <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/dvhbru/badbrowser/fork" data-icon="octicon-git-branch" data-count-href="/dvhbru/badbrowser/network" data-count-api="/repos/dvhbru/badbrowser#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork dvhbru/badbrowser on GitHub">Fork</a>
-        <!-- Place this tag where you want the button to render. -->
-        <a class="github-button" href="https://github.com/dvhbru/badbrowser/issues" data-icon="octicon-issue-opened" data-count-api="/repos/dvhbru/badbrowser#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue dvhbru/badbrowser on GitHub">Issue</a>
-        <!-- Place this tag right after the last button or just before your close body tag. -->
-        <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
-        <p>
-            The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.
-            <pre><code class="bash">npm i @dvhb/badbrowser</code></pre>
-            <button class="uk-button uk-button-primary" onclick="demoFull()">Demo (fullscreen)</button>
-            <button class="uk-button uk-button-primary" onclick="demoModal()">Demo (modal)</button>
-            <button class="uk-button uk-button-primary" onclick="demoLogo()">Demo (fullscreen + logo)</button>
-        </p>
-        <p>
-        <a href="https://github.com/dvhbru/badbrowser/blob/master/LICENSE">MIT License</a> © <a href="https://github.com/dvhbru">dvhb</a>
-        </p>
-        <p>
-<pre><code class="javascript">badbrowser.init({
+<article class="uk-width-7-10 uk-container-center">
+    <h1>Bad Browser</h1>
+    <a class="fork-link" href="https://github.com/dvhbru/badbrowser"><img
+            style="position: absolute; top: 0; right: 0; border: 0;"
+            src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+            alt="Fork me on GitHub"
+            data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"></a>
+    <!-- Place this tag where you want the button to render. -->
+    <a class="github-button" href="https://github.com/dvhbru/badbrowser" data-icon="octicon-star"
+       data-count-href="/dvhbru/badbrowser/stargazers" data-count-api="/repos/dvhbru/badbrowser#stargazers_count"
+       data-count-aria-label="# stargazers on GitHub" aria-label="Star dvhbru/badbrowser on GitHub">Star</a>
+    <!-- Place this tag where you want the button to render. -->
+    <a class="github-button" href="https://github.com/dvhbru/badbrowser/fork" data-icon="octicon-git-branch"
+       data-count-href="/dvhbru/badbrowser/network" data-count-api="/repos/dvhbru/badbrowser#forks_count"
+       data-count-aria-label="# forks on GitHub" aria-label="Fork dvhbru/badbrowser on GitHub">Fork</a>
+    <!-- Place this tag where you want the button to render. -->
+    <a class="github-button" href="https://github.com/dvhbru/badbrowser/issues" data-icon="octicon-issue-opened"
+       data-count-api="/repos/dvhbru/badbrowser#open_issues_count" data-count-aria-label="# issues on GitHub"
+       aria-label="Issue dvhbru/badbrowser on GitHub">Issue</a>
+    <!-- Place this tag right after the last button or just before your close body tag. -->
+    <script async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+    <p>
+        The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.
+    <pre><code class="bash">npm i @dvhb/badbrowser</code></pre>
+    <button class="uk-button uk-button-primary" onclick="demoFull()">Demo (fullscreen)</button>
+    <button class="uk-button uk-button-primary" onclick="demoModal()">Demo (modal)</button>
+    <button class="uk-button uk-button-primary" onclick="demoLogo()">Demo (fullscreen + logo)</button>
+    </p>
+    <p>
+        <a href="https://github.com/dvhbru/badbrowser/blob/master/LICENSE">MIT License</a> © <a
+            href="https://github.com/dvhbru">dvhb</a>
+    </p>
+    <p>
+<pre><code class="javascript">import badbrowser from '@dvhb/badbrowser'
+
+badbrowser.init({
     // path to your html alerts
     // could be a function:
     // function (ua) {
@@ -73,86 +89,85 @@
         // if `false`, will show alert for any mobile browser
         mobile: false
     }
-})</code>
-</pre>
+})</code></pre>
 
-    </article>
-    <script>
-        hljs.initHighlightingOnLoad();
+</article>
+<script>
+    hljs.initHighlightingOnLoad();
 
-        function demoFull () {
-            badbrowser.init({
-                // if `false` then user's choice will be saved in the cookies
-                // and alert window will not be showen next time
-                ignoreChoice: true,
-                // if false alert will be shown in a modal window
-                fullscreen: true,
-                // Min version of browser that will be supported
-                supported: {
-                    // user of chrome v.39 will see an alert winodw
-                    chrome: 100,
-                    firefox: 100,
-                    ie: 100,
-                    opera: 100,
-                    opera_mini: 100,
-                    safari_mobile: 100,
-                    android: 100,
-                    safari: 100,
-                    // if `false`, will show alert for any mobile browser
-                    mobile: false
-                }
-            })
-        }
+    function demoFull() {
+        badbrowser.init({
+            // if `false` then user's choice will be saved in the cookies
+            // and alert window will not be showen next time
+            ignoreChoice: true,
+            // if false alert will be shown in a modal window
+            fullscreen: true,
+            // Min version of browser that will be supported
+            supported: {
+                // user of chrome v.39 will see an alert winodw
+                chrome: 100,
+                firefox: 100,
+                ie: 100,
+                opera: 100,
+                opera_mini: 100,
+                safari_mobile: 100,
+                android: 100,
+                safari: 100,
+                // if `false`, will show alert for any mobile browser
+                mobile: false
+            }
+        })
+    }
 
-        function demoModal () {
-            badbrowser.init({
-                // if `false` then user's choice will be saved in the cookies
-                // and alert window will not be showen next time
-                ignoreChoice: true,
-                // if false alert will be shown in a modal window
-                fullscreen: false,
-                // Min version of browser that will be supported
-                supported: {
-                    // user of chrome v.39 will see an alert winodw
-                    chrome: 100,
-                    firefox: 100,
-                    ie: 100,
-                    opera: 100,
-                    opera_mini: 100,
-                    safari_mobile: 100,
-                    android: 100,
-                    safari: 100,
-                    // if `false`, will show alert for any mobile browser
-                    mobile: false
-                }
-            })
-        }
+    function demoModal() {
+        badbrowser.init({
+            // if `false` then user's choice will be saved in the cookies
+            // and alert window will not be showen next time
+            ignoreChoice: true,
+            // if false alert will be shown in a modal window
+            fullscreen: false,
+            // Min version of browser that will be supported
+            supported: {
+                // user of chrome v.39 will see an alert winodw
+                chrome: 100,
+                firefox: 100,
+                ie: 100,
+                opera: 100,
+                opera_mini: 100,
+                safari_mobile: 100,
+                android: 100,
+                safari: 100,
+                // if `false`, will show alert for any mobile browser
+                mobile: false
+            }
+        })
+    }
 
-        function demoLogo () {
-            badbrowser.init({
-                // if `false` then user's choice will be saved in the cookies
-                // and alert window will not be showen next time
-                ignoreChoice: true,
-                // if false alert will be shown in a modal window
-                fullscreen: true,
-                logo: 'logo.svg',
-                // Min version of browser that will be supported
-                supported: {
-                    // user of chrome v.39 will see an alert winodw
-                    chrome: 100,
-                    firefox: 100,
-                    ie: 100,
-                    opera: 100,
-                    opera_mini: 100,
-                    safari_mobile: 100,
-                    android: 100,
-                    safari: 100,
-                    // if `false`, will show alert for any mobile browser
-                    mobile: false
-                }
-            })
-        }
+    function demoLogo() {
+        badbrowser.init({
+            // if `false` then user's choice will be saved in the cookies
+            // and alert window will not be showen next time
+            ignoreChoice: true,
+            // if false alert will be shown in a modal window
+            fullscreen: true,
+            logo: 'logo.svg',
+            // Min version of browser that will be supported
+            supported: {
+                // user of chrome v.39 will see an alert winodw
+                chrome: 100,
+                firefox: 100,
+                ie: 100,
+                opera: 100,
+                opera_mini: 100,
+                safari_mobile: 100,
+                android: 100,
+                safari: 100,
+                // if `false`, will show alert for any mobile browser
+                mobile: false
+            }
+        })
+    }
 
-    </script>
+</script>
 </body>
 </html>
