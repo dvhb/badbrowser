@@ -1,13 +1,16 @@
 {
-  "name": "dvhb-badbrowser",
-  "version": "1.0.4",
+  "name": "@dvhb/badbrowser",
+  "version": "1.0.5",
   "description": "The library checks user client and shows a warning if the browser version does not meet minimal requirements",
-  "main": "index.js",
+  "main": "lib/badbrowser.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "files": [
+    "lib"
+  ],
+  "author": "team@dvhb.ru",
+  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.8.11",
     "gulp-concat": "^2.5.2",

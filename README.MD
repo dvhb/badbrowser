@@ -1,10 +1,12 @@
 # Bad Browser
+
 ## Install
 ```
-bower install dvhb-badbrowser
+npm i @dvhb/badbrowser
 ```
+
 ## Demo
-http://dvhbru.github.io/dvhb-badbrowser/
+http://dvhbru.github.io/badbrowser/
 
 ## Using
 Put html for your alert windows in `/alerts/` with this pattern:
@@ -16,8 +18,9 @@ alerts/
  en.mobile.html
  ...
 ```
-```html
-<script src="bower_components/dvhb-badbrowser/badbrowser.js"></script>
+
+```js
+import '@dvhb/badbrowser'
 ```
 
 Call `badbrowser.init`
