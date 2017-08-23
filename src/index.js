@@ -1,13 +1,10 @@
-/**
- * @module Browser-check
- *
- * @require detect.js
- * 
- */
-var badbrowser = (function (window, document, undefined) {
+import 'detect.js';
+import './styles';
+
+let badbrowser = (function (window, document, undefined) {
     'use strict';
 
-    var ua = window.detect.parse(navigator.userAgent),
+    let ua = window.detect.parse(navigator.userAgent),
         api = {},
         settings = {},
         browsers,
@@ -16,22 +13,22 @@ var badbrowser = (function (window, document, undefined) {
         defaultTemplate;
 
     defaultTemplate = [
-        "<img class='badbrowser__logo' src=''/>",
-        "<h1>Your browser is not supported</h1>",
-        "<h3 class='badbrowser-user-browser'></h3>",
-        "<p>You can continue browsing, but correct work is not guaranteed</p>",
-        "<p>",
-        "<a class='oldbrowser__browserLink' title='Download Google Chrome' style='background-position: 0px 0px;' href='https://www.google.com/chrome/' target='_blank'></a>",
-        "<a class='oldbrowser__browserLink' title='Download Mozilla Firefox' style='background-position: -60px 0px;' href='https://www.mozilla.org/ru/firefox/new/' target='_blank'></a>",
-        "<a class='oldbrowser__browserLink' title='Download Opera' style='background-position: -120px 0px;' href='http://www.opera.com/download' target='_blank'></a>",
-        "<a class='oldbrowser__browserLink' title='Download Safari' style='background-position: -180px 0px;' href='https://www.apple.com/safari/' target='_blank'></a>",
-        "<a class='oldbrowser__browserLink' title='Download Internet Explorer' style='background-position: -240px 0px;' href='https://www.microsoft.com/ie/' target='_blank'></a>",
-        "</p>",
-        "<a href='javascript:;' class='badbrowser-close'>Continue</a>"
-    ].join("");
+        '<img class="badbrowser__logo" src=""/>',
+        '<h1>Your browser is not supported</h1>',
+        '<h3 class="badbrowser-user-browser"></h3>',
+        '<p>You can continue browsing, but correct work is not guaranteed</p>',
+        '<p>',
+        '<a class="oldbrowser__browserLink" title="Download Google Chrome" style="background-position: 0px 0px;" href="https://www.google.com/chrome/" target="_blank"></a>',
+        '<a class="oldbrowser__browserLink" title="Download Mozilla Firefox" style="background-position: -60px 0px;" href="https://www.mozilla.org/ru/firefox/new/" target="_blank"></a>',
+        '<a class="oldbrowser__browserLink" title="Download Opera" style="background-position: -120px 0px;" href="http://www.opera.com/download" target="_blank"></a>',
+        '<a class="oldbrowser__browserLink" title="Download Safari" style="background-position: -180px 0px;" href="https://www.apple.com/safari/" target="_blank"></a>',
+        '<a class="oldbrowser__browserLink" title="Download Internet Explorer" style="background-position: -240px 0px;" href="https://www.microsoft.com/ie/" target="_blank"></a>',
+        '</p>',
+        '<a href="javascript:;" class="badbrowser-close">Continue</a>'
+    ].join('');
 
-    // Dictionary to translate detect.js browser's name 
-    // into badbrowser's settings shortcut 
+    // Dictionary to translate detect.js browser's name
+    // into badbrowser's settings shortcut
     browsers = {
         'IE': 'ie',
         'IE Large Screen': 'ie',
@@ -47,7 +44,6 @@ var badbrowser = (function (window, document, undefined) {
     };
 
     defaults = {
-        lang: 'en',
         template: null,
         path: false,
         fullscreen: true,
@@ -77,14 +73,14 @@ var badbrowser = (function (window, document, undefined) {
 
     /**
      * Initialize module
-     * 
+     *
      * @param  {Object} options - options that will override defaults
      */
-    function init (options) {
-        var isMatch,
-            path,
-            isMobile = ua.device.type == "Mobile";
-        
+    function init(options) {
+
+        let isMatch,
+            path;
+
         settings = extend(settings, defaults);
         settings = extend(settings, options);
 
@@ -92,7 +88,7 @@ var badbrowser = (function (window, document, undefined) {
             settings.supported = {
                 mobile: true
             };
-            for (var key in settings.unsupported) {
+            for (let key in settings.unsupported) {
                 if (typeof settings.unsupported[key] == 'string' || typeof settings.unsupported[key] == 'number') {
                     settings.supported[key] = parseInt(settings.unsupported[key]) + 1;
                 } else {
@@ -125,12 +121,12 @@ var badbrowser = (function (window, document, undefined) {
 
     /**
      * Check if current browser is supported
-     * @return {Boolean} 
+     * @return {Boolean}
      */
-    function check () {
-        var currentBrowser = browsers[ua.browser.family],
+    function check() {
+        let currentBrowser = browsers[ua.browser.family],
             minSupported = settings.supported[currentBrowser],
-            isMobile = ua.device.type == "Mobile",
+            isMobile = ua.device.type == 'Mobile',
             isMobileSupported = settings.supported.mobile === true;
 
         if (minSupported === 'not supported' || (isMobile && !isMobileSupported))
@@ -138,19 +134,19 @@ var badbrowser = (function (window, document, undefined) {
         else if (!minSupported) {
             return true;
         } else {
-            return parseFloat(minSupported) <= parseFloat(ua.browser.version );
+            return parseFloat(minSupported) <= parseFloat(ua.browser.version);
         }
     }
 
     /**
      * Merge defaults with user options
-     * 
-     * @param  {Object} defaults 
-     * @param  {Object} options  
+     *
+     * @param  {Object} defaults
+     * @param  {Object} options
      * @return {Object}
      */
-    function extend (extended, options) {
-        for (var property in options) {
+    function extend(extended, options) {
+        for (let property in options) {
             try {
                 if (options[property].constructor == Object) {
                     extended[property] = extend(extended[property], options[property]);
@@ -165,11 +161,11 @@ var badbrowser = (function (window, document, undefined) {
         return extended;
     }
 
-    function showCurrentVersion (element) {        
-        var browserEl = element.querySelector(".badbrowser-user-browser");
+    function showCurrentVersion(element) {
+        let browserEl = element.querySelector('.badbrowser-user-browser');
 
-        if (browserEl) { 
-            browserEl.innerHTML = ua.browser.family + " " + ua.browser.version;
+        if (browserEl) {
+            browserEl.innerHTML = ua.browser.family + ' ' + ua.browser.version;
         }
     }
 
@@ -177,14 +173,14 @@ var badbrowser = (function (window, document, undefined) {
      * Shows warning if it is not added yet and removes
      * warning if it exists
      */
-    function toggleWarning () {
-        var body, warning, warningHelper, warningContent, isPass;
-        
+    function toggleWarning() {
+        let body, warning, warningHelper, warningContent, isPass;
+
         body = document.getElementsByTagName('body')[0];
-        warning = body.querySelectorAll('.badbrowser'); 
+        warning = body.querySelectorAll('.badbrowser');
 
         isPass = getCookie('badbrowser_pass');
-    
+
         if (isPass)
             return;
 
@@ -200,7 +196,7 @@ var badbrowser = (function (window, document, undefined) {
             warning.className = 'badbrowser';
             if (!settings.fullscreen) {
                 warning.className += ' badbrowser_modal';
-                if (warning.addEventListener) 
+                if (warning.addEventListener)
                     warning.addEventListener('click', closeWarning, false);
                 else
                     warning.attachEvent('onclick', closeWarning);
@@ -217,8 +213,8 @@ var badbrowser = (function (window, document, undefined) {
             warning.appendChild(warningContent);
             warningContent.innerHTML = settings.template;
 
-            var logos = warning.querySelectorAll('.badbrowser__logo');
-            for (var i = logos.length - 1; i >= 0; i--) {
+            let logos = warning.querySelectorAll('.badbrowser__logo');
+            for (let i = logos.length - 1; i >= 0; i--) {
                 if (!settings.logo)
                     logos[i].parentNode.removeChild(logos[i]);
                 else
@@ -227,9 +223,9 @@ var badbrowser = (function (window, document, undefined) {
 
             showCurrentVersion(warningContent);
 
-            var closeBtns = warning.querySelectorAll('.badbrowser-close');
-            for (var i = closeBtns.length - 1; i >= 0; i--) {
-                var close = closeBtns[i];
+            let closeBtns = warning.querySelectorAll('.badbrowser-close');
+            for (let i = closeBtns.length - 1; i >= 0; i--) {
+                let close = closeBtns[i];
                 if (close && close.addEventListener)
                     close.addEventListener('click', closeWarning);
                 else if (close && close.attachEvent)
@@ -240,42 +236,42 @@ var badbrowser = (function (window, document, undefined) {
         }
     }
 
-    function closeWarning (event) {
+    function closeWarning(event) {
         if (event.target !== this)
             return;
-        var expireDate = new Date();
+        let expireDate = new Date();
         expireDate.setTime(expireDate.getTime() + (30 * 24 * 60 * 60 * 1000));
         toggleWarning();
 
-        document.cookie = "badbrowser_pass=true;" + "expires=" + expireDate.toUTCString();
+        document.cookie = 'badbrowser_pass=true;' + 'expires=' + expireDate.toUTCString();
     }
 
     function getCookie(name) {
         if (settings.ignoreChoice)
             return;
-        var value = "; " + document.cookie;
-        var parts = value.split("; " + name + "=");
-        if (parts.length == 2) return parts.pop().split(";").shift();
+        let value = '; ' + document.cookie;
+        let parts = value.split('; ' + name + '=');
+        if (parts.length == 2) return parts.pop().split(';').shift();
     }
 
 
     /**
      * Cross-browser XMLHttpRequest
-     * 
+     *
      * @return {XMLHttpRequest}
      */
     function getXmlHttp() {
-        var xmlhttp;
+        let xmlhttp;
         try {
-            xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+            xmlhttp = new ActiveXObject('Msxml2.XMLHTTP');
         } catch (e) {
             try {
-              xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
             } catch (err) {
-              xmlhttp = false;
+                xmlhttp = false;
             }
         }
-        if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+        if (!xmlhttp && typeof XMLHttpRequest != 'undefined') {
             xmlhttp = new XMLHttpRequest();
         }
         return xmlhttp;
@@ -283,20 +279,20 @@ var badbrowser = (function (window, document, undefined) {
 
     /**
      * Get template for warning window
-     * 
-     * @param  {String} lang - eg. 'en', 'ru'
+     *
+     * @param  {String} path - path to badbrowser template
      * @param  {Function(text)} callback - text of loaded template
      */
-    function getTemplate (path, callback) {
+    function getTemplate(path, callback) {
         if (!path) {
             callback(null);
             return;
         }
-        var request = getXmlHttp();
+        let request = getXmlHttp();
         if (request) {
             request.onreadystatechange = function () {
                 if (request.readyState == 4) {
-                    request.status == 200 
+                    request.status == 200
                         ? callback(request.responseText)
                         : callback(null);
                 }
@@ -307,15 +303,4 @@ var badbrowser = (function (window, document, undefined) {
     }
 })(window, document);
 
-if (typeof exports !== "undefined") {
-    if (typeof module !== "undefined" && module.exports) {
-        exports = module.exports = badbrowser;
-    }
-    exports.badbrowser = badbrowser;
-}
-
-if (typeof define === "function" && define.amd) {
-    define(function(require) {
-        return badbrowser;
-    });
-}
+module.exports = badbrowser;

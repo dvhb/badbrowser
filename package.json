@@ -1,20 +1,31 @@
 {
   "name": "@dvhb/badbrowser",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "The library checks user client and shows a warning if the browser version does not meet minimal requirements",
-  "main": "lib/badbrowser.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:dvhbru/badbrowser.git"
   },
+  "license": "MIT",
+  "main": "dist/badbrowser.js",
   "files": [
     "lib"
   ],
-  "author": "team@dvhb.ru",
-  "license": "MIT",
+  "engines": {
+    "node": ">=6"
+  },
   "devDependencies": {
-    "gulp": "^3.8.11",
-    "gulp-concat": "^2.5.2",
-    "gulp-webserver": "^0.9.0",
-    "gulp-gh-pages": "~0.5.2"
+    "@dvhb/webpack": "1.4.2",
+    "gh-pages": "^1.0.0"
+  },
+  "scripts": {
+    "dev": "dvhb-webpack server",
+    "build": "npm run build:prod",
+    "build:dev": "dvhb-webpack build --app-env=development",
+    "build:prod": "dvhb-webpack build --app-env=production",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "detect.js": "^2.2.2"
   }
 }
