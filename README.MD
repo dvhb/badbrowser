@@ -9,13 +9,11 @@ npm i @dvhb/badbrowser
 http://dvhbru.github.io/badbrowser/
 
 ## Using
-Put html for your alert windows in `/alerts/` with this pattern:
+Put html for your custom alert windows in `/alerts/` with this pattern:
 ```
 alerts/
  ru.html
- ru.mobile.html
  en.html
- en.mobile.html
  ...
 ```
 
