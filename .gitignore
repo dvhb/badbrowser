@@ -1,8 +1,6 @@
 .idea
 node_modules/
-# added by GitSavvy
-.publish
-
-# added by GitSavvy
-*.sublime-workspace
+dist/
 npm-debug.log
+.DS_Store
+.publish
