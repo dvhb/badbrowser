@@ -16,16 +16,18 @@
   },
   "devDependencies": {
     "@dvhb/webpack": "1.4.2",
-    "gh-pages": "^1.0.0"
+    "gh-pages": "^1.0.0",
+    "jest": "^20.0.4"
   },
   "scripts": {
     "dev": "dvhb-webpack server",
     "build": "npm run build:prod",
     "build:dev": "dvhb-webpack build --app-env=development",
     "build:prod": "dvhb-webpack build --app-env=production",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "test": "jest"
   },
   "dependencies": {
-    "detect.js": "^2.2.2"
+    "bowser": "^1.7.2"
   }
 }
