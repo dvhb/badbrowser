@@ -1,4 +1,4 @@
-<html><head><title>Bad browser test</title><link href="badbrowser.css" rel="stylesheet"/><script src="badbrowser.js"></script><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.min.css"/><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.almost-flat.min.css"/><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><style>html {
+<html><head><title>@dvhb/badbrowser</title><link href="badbrowser.css" rel="stylesheet"/><script src="badbrowser.js"></script><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.min.css"/><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/2.21.0/css/uikit.almost-flat.min.css"/><link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/styles/github.min.css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/highlight.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.6/languages/javascript.min.js"></script><style>html {
     background-color: #f7f7f7;
     margin-top: 30px;
 }
@@ -33,8 +33,6 @@ badbrowser.init({
         firefox: 38,
         ie: 9,
         opera: 26,
-        opera_mini: 7,
-        safari_mobile: 7,
         android: 10,
         safari: 6,
         // if `false`, will show alert for any mobile browser
@@ -50,16 +48,15 @@ function demoFull() {
         // if false alert will be shown in a modal window
         fullscreen: true,
         // Min version of browser that will be supported
-        supported: {
+
+        unsupported: {
             // user of chrome v.39 will see an alert winodw
-            chrome: 100,
-            firefox: 100,
-            ie: 100,
-            opera: 100,
-            opera_mini: 100,
-            safari_mobile: 100,
-            android: 100,
-            safari: 100,
+            chrome: '100',
+            firefox: '100',
+            ie: '100',
+            opera: '100',
+            android: '100',
+            safari: '9',
             // if `false`, will show alert for any mobile browser
             mobile: false
         }
@@ -75,14 +72,12 @@ function demoModal() {
         // Min version of browser that will be supported
         supported: {
             // user of chrome v.39 will see an alert winodw
-            chrome: 100,
-            firefox: 100,
-            ie: 100,
-            opera: 100,
-            opera_mini: 100,
-            safari_mobile: 100,
-            android: 100,
-            safari: 100,
+            chrome: '100',
+            firefox: '100',
+            ie: '100',
+            opera: '100',
+            android: '100',
+            safari: '100',
             // if `false`, will show alert for any mobile browser
             mobile: false
         }
@@ -99,14 +94,12 @@ function demoLogo() {
         // Min version of browser that will be supported
         supported: {
             // user of chrome v.39 will see an alert winodw
-            chrome: 100,
-            firefox: 100,
-            ie: 100,
-            opera: 100,
-            opera_mini: 100,
-            safari_mobile: 100,
-            android: 100,
-            safari: 100,
+            chrome: '100',
+            firefox: '100',
+            ie: '100',
+            opera: '100',
+            android: '100',
+            safari: '100',
             // if `false`, will show alert for any mobile browser
             mobile: false
         }
@@ -122,14 +115,12 @@ function demoCustomTemplate() {
         // Min version of browser that will be supported
         supported: {
             // user of chrome v.39 will see an alert winodw
-            chrome: 100,
-            firefox: 100,
-            ie: 100,
-            opera: 100,
-            opera_mini: 100,
-            safari_mobile: 100,
-            android: 100,
-            safari: 100,
+            chrome: '100',
+            firefox: '100',
+            ie: '100',
+            opera: '100',
+            android: '100',
+            safari: '100',
             // if `false`, will show alert for any mobile browser
             mobile: false
         }
