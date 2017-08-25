@@ -1,4 +1,4 @@
-# @dvhb/badbrowser [![Build Status][ci-img]][ci]
+# @dvhb/badbrowser [![Build Status](https://travis-ci.org/dvhbru/badbrowser.svg?branch=master)](https://travis-ci.org/dvhbru/badbrowser)
 
 ## Install
 ```
