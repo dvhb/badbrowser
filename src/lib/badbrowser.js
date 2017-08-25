@@ -4,7 +4,8 @@ export default class BadBrowser {
 
   constructor({ userAgent, supported = {}, unsupported = {}, ignoreChoice = false, fullscreen = true, logo = false, path = false }={}) {
     this._userAgent = userAgent || navigator.userAgent;
-    this.bowser = bowser._detect(this._userAgent);
+    this._bowser = bowser;
+    this.detectedBrowser = bowser._detect(this._userAgent);
 
     this.settings = extend({
       template: null,
@@ -13,22 +14,19 @@ export default class BadBrowser {
       ignoreChoice: false,
       logo: false,
       supported: {
-        chrome: 42,
-        firefox: 38,
-        ie: 9,
-        opera: 26,
-        opera_mini: 7,
-        safari_mobile: 7,
-        android: 10,
-        safari: 6,
+        chrome: '42',
+        firefox: '38',
+        msie: '9',
+        msedge: '12',
+        opera: '26',
+        safari: '6',
+        android: '10',
         mobile: true
       }
     }, { supported, unsupported, ignoreChoice, fullscreen, logo, path });
 
-    // Dictionary to translate detect.js browser's name
-    // into badbrowser's settings shortcut
-    this.browsers = {
-      'Chrome': 'chrome',
+    this.flags = {
+      browsers: ['chrome', 'firefox', 'msie', 'msedge', 'safari', 'android', 'ios', 'opera', 'samsungBrowser', 'phantom', 'blackberry', 'webos', 'silk', 'bada', 'tizen', 'seamonkey', 'sailfish', 'ucbrowser', 'qupzilla', 'vivaldi', 'sleipnir', 'kMeleon']
     };
 
     this.defaultTemplate = `
@@ -52,7 +50,7 @@ export default class BadBrowser {
       };
       for (let key in this.settings.unsupported) {
         if (typeof this.settings.unsupported[key] == 'string' || typeof this.settings.unsupported[key] == 'number') {
-          this.settings.supported[key] = parseInt(this.settings.unsupported[key]) + 1;
+          this.settings.supported[key] = (parseInt(this.settings.unsupported[key]) + 1).toString();
         } else {
           this.settings.supported[key] = !this.settings.unsupported[key];
         }
@@ -67,7 +65,7 @@ export default class BadBrowser {
         this.toggleWarning();
       } else {
         if (typeof this.settings.path == 'function') {
-          path = this.settings.path(this.bowser);
+          path = this.settings.path();
         } else if (typeof this.settings.path == 'string') {
           path = this.settings.path;
         }
@@ -89,15 +87,22 @@ export default class BadBrowser {
    * @returns {string}
    */
   get name() {
-    return this.bowser.name
+    return this.detectedBrowser.name
   }
 
   get version() {
-    return this.bowser.version
+    return parseFloat(this.detectedBrowser.version)
   }
 
-  get mobile() {
-    return this.bowser.mobile;
+  get minSupportVersion() {
+    function intersection(o1, o2) {
+      return Object.keys(o1).filter({}.hasOwnProperty.bind(o2));
+    }
+
+    const flags = intersection(this.settings.supported, this.detectedBrowser);
+    const browserGlag = this.flags.browsers.filter((flag) => flags.indexOf(flag) !== -1);
+
+    return this.settings.supported[browserGlag[0]];
   }
 
   /**
@@ -115,18 +120,7 @@ export default class BadBrowser {
    * @return {Boolean}
    */
   check() {
-    let currentBrowser = this.browsers[this.name],
-      minSupported = this.settings.supported[currentBrowser],
-      isMobile = this.mobile,
-      isMobileSupported = this.settings.supported.mobile === true;
-
-    if (minSupported === 'not supported' || (isMobile && !isMobileSupported))
-      return false;
-    else if (!minSupported) {
-      return true;
-    } else {
-      return parseFloat(minSupported) <= parseFloat(this.version);
-    }
+    return this._bowser.check(this.settings.supported, this.userAgent);
   }
 
   /**
