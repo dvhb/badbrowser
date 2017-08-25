@@ -1,4 +1,4 @@
-# Bad Browser
+# @dvhb/badbrowser [![Build Status][ci-img]][ci]
 
 ## Install
 ```
