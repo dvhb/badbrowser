@@ -1,6 +1,6 @@
 {
   "name": "@dvhb/badbrowser",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "The library checks user client and shows a warning if the browser version does not meet minimal requirements",
   "repository": {
     "type": "git",
@@ -25,7 +25,7 @@
     "build:dev": "dvhb-webpack build --app-env=development",
     "build:prod": "dvhb-webpack build --app-env=production",
     "deploy": "gh-pages -d dist",
-    "test": "jest"
+    "test": "jest --verbose"
   },
   "dependencies": {
     "bowser": "^1.7.2"
