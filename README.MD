@@ -70,6 +70,7 @@ badbrowser.init({
   * `msie`
   * `msedge`
   * `safari`
+  * `yandexbrowser`
   * `android`
   * `ios`
   * `opera`

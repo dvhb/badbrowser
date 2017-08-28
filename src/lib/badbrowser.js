@@ -21,12 +21,13 @@ export default class BadBrowser {
         opera: '26',
         safari: '6',
         android: '10',
+        yandexbrowser: '15',
         mobile: true
       }
     }, { supported, unsupported, ignoreChoice, fullscreen, logo, path });
 
     this.flags = {
-      browsers: ['chrome', 'firefox', 'msie', 'msedge', 'safari', 'android', 'ios', 'opera', 'samsungBrowser', 'phantom', 'blackberry', 'webos', 'silk', 'bada', 'tizen', 'seamonkey', 'sailfish', 'ucbrowser', 'qupzilla', 'vivaldi', 'sleipnir', 'kMeleon']
+      browsers: ['chrome', 'firefox', 'msie', 'msedge', 'yandexbrowser', 'safari', 'android', 'ios', 'opera', 'samsungBrowser', 'phantom', 'blackberry', 'webos', 'silk', 'bada', 'tizen', 'seamonkey', 'sailfish', 'ucbrowser', 'qupzilla', 'vivaldi', 'sleipnir', 'kMeleon']
     };
 
     this.defaultTemplate = `
@@ -95,6 +96,11 @@ export default class BadBrowser {
   }
 
   get minSupportVersion() {
+    const flag = this.currentFlag;
+    return this.settings.supported[flag];
+  }
+
+  get currentFlag() {
     function intersection(o1, o2) {
       return Object.keys(o1).filter({}.hasOwnProperty.bind(o2));
     }
@@ -102,7 +108,7 @@ export default class BadBrowser {
     const flags = intersection(this.settings.supported, this.detectedBrowser);
     const browserGlag = this.flags.browsers.filter((flag) => flags.indexOf(flag) !== -1);
 
-    return this.settings.supported[browserGlag[0]];
+    return browserGlag[0];
   }
 
   /**

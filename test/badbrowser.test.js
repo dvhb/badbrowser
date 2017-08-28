@@ -68,3 +68,44 @@ describe('default supported browsers', () => {
   });
 
 });
+
+/**
+ * check browsers
+ *
+ * desktop
+ * Microsoft Edge, 12+;
+ * Mozilla Firefox, 37+;
+ * Google Chrome, 41+;
+ * Opera, 28+;
+ * Apple Safari, 8+;
+ * Yandex Browser, 15+.
+ */
+const supported = {
+  msedge: '12',
+  firefox: '37',
+  chrome: '41',
+  opera: '28',
+  safari: '8',
+  yandexbrowser: '15',
+};
+
+describe(`check ${JSON.stringify(supported)}`, () => {
+  const userAgents = [
+    'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.71 Safari/537.36 Edge/12.0',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:24.0) Gecko/20100101 Firefox/37.0',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_7) AppleWebKit/534.24 (KHTML, like Gecko) Chrome/41.0.696.57 Safari/534.24',
+    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.52 Safari/537.36 OPR/28.0.1147.100',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/8.1.7 Safari/534.57.2',
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 YaBrowser/15.4.2272.3420 (beta) Yowser/2.0 Safari/537.36',
+  ];
+
+  userAgents.forEach((userAgent) => {
+    const bb = new badbrowser({ userAgent, supported });
+    const isSupported = bb.check();
+
+    it(`support ${bb.currentFlag} (${bb.version}>=${bb.minSupportVersion}) "${userAgent}"`, () => {
+      expect(isSupported).toBe(true);
+    });
+  });
+
+});
