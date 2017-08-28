@@ -20,15 +20,12 @@ export default class BadBrowser {
         msedge: '12',
         opera: '26',
         safari: '6',
-        android: '10',
         yandexbrowser: '15',
+        safari_mobile: '7',
+        android: '4',
         mobile: true
       }
     }, { supported, unsupported, ignoreChoice, fullscreen, logo, path });
-
-    this.flags = {
-      browsers: ['chrome', 'firefox', 'msie', 'msedge', 'yandexbrowser', 'safari', 'android', 'ios', 'opera', 'samsungBrowser', 'phantom', 'blackberry', 'webos', 'silk', 'bada', 'tizen', 'seamonkey', 'sailfish', 'ucbrowser', 'qupzilla', 'vivaldi', 'sleipnir', 'kMeleon']
-    };
 
     this.defaultTemplate = `
       <img class="badbrowser__logo" src=""/>
@@ -46,9 +43,6 @@ export default class BadBrowser {
     `;
 
     if (this.settings.unsupported) {
-      this.settings.supported = {
-        mobile: true
-      };
       for (let key in this.settings.unsupported) {
         if (typeof this.settings.unsupported[key] == 'string' || typeof this.settings.unsupported[key] == 'number') {
           this.settings.supported[key] = (parseInt(this.settings.unsupported[key]) + 1).toString();
@@ -88,7 +82,7 @@ export default class BadBrowser {
    * @returns {string}
    */
   get name() {
-    return this.detectedBrowser.name
+    return `${this.detectedBrowser.name}${this.detectedBrowser.mobile? ' Mobile' : ''}`
   }
 
   get version() {
@@ -96,8 +90,7 @@ export default class BadBrowser {
   }
 
   get minSupportVersion() {
-    const flag = this.currentFlag;
-    return this.settings.supported[flag];
+    return this.minVersions[this.currentFlag];
   }
 
   get currentFlag() {
@@ -105,10 +98,22 @@ export default class BadBrowser {
       return Object.keys(o1).filter({}.hasOwnProperty.bind(o2));
     }
 
-    const flags = intersection(this.settings.supported, this.detectedBrowser);
-    const browserGlag = this.flags.browsers.filter((flag) => flags.indexOf(flag) !== -1);
+    if (!this._currentFlag) {
+      const flags = intersection(this.settings.supported, this.detectedBrowser);
+      const [browser, isMobile] = flags;
 
-    return browserGlag[0];
+      const mobileBrowser = `${browser}_${isMobile}`;
+      if (isMobile && this.settings.supported[mobileBrowser]) {
+        this._currentFlag = mobileBrowser;
+      } else {
+        this._currentFlag = browser;
+      }
+    }
+    return this._currentFlag;
+  }
+
+  get minVersions() {
+    return { [this.currentFlag]: this.settings.supported[this.currentFlag] }
   }
 
   /**
@@ -126,7 +131,16 @@ export default class BadBrowser {
    * @return {Boolean}
    */
   check() {
-    return this._bowser.check(this.settings.supported, this.userAgent);
+    const bowserMinVersions = { [this.currentFlag.replace('_mobile', '')]: this.minSupportVersion };
+
+    let isSupported = false;
+    try {
+      isSupported = this._bowser.check(bowserMinVersions, this.userAgent)
+    } catch (e) {
+      isSupported = false;
+    }
+
+    return isSupported;
   }
 
   /**
