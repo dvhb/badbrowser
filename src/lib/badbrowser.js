@@ -131,6 +131,8 @@ export default class BadBrowser {
    * @return {Boolean}
    */
   check() {
+    if (this.detectedBrowser.mobile && !this.settings.supported.mobile) return false;
+
     const bowserMinVersions = { [this.currentFlag.replace('_mobile', '')]: this.minSupportVersion };
 
     let isSupported = false;
