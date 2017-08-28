@@ -21,10 +21,40 @@ alerts/
 import badbrowser from '@dvhb/badbrowser'
 ```
 
-Call `badbrowser.init`
+### Example
+
+Desktop
+
+* Microsoft Edge, 12+;
+* Mozilla Firefox, 37+;
+* Google Chrome, 41+;
+* Opera, 28+;
+* Apple Safari, 8+;
+* Yandex Browser, 15+.
+
+Mobile
+
+* Mobile Safari, 7+
+* Android Browser, 4+
+* Chrome Mobile, 41+;
+* Internet Explorer Mobile, 11+;
 
 ```js
-badbrowser.init({
+new badbrowser({
+    // Min version of browser that will be supported
+    supported: {
+        msedge: '12',
+        firefox: '37',
+        chrome: '41',
+        opera: '28',
+        safari: '8',
+        yandexbrowser: '15',
+        safari_mobile: '7',
+        android: '4',
+        chrome_mobile: '41',
+        msie_mobile: '11'
+    },
+
     // path to your html alerts
     // could be a function:
     // function (ua) {
@@ -33,25 +63,13 @@ badbrowser.init({
     path: '/alerts/en.html',
     // if `false` then user's choice will be saved in the cookies
     // and alert window will not be showen next time
-    ignoreChoice: false,
-    // Min version of browser that will be supported
-    supported: {
-        // user of chrome v.39 will see an alert winodw
-        chrome: '42',
-        firefox: '38',
-        ie: '9',
-        opera: '26',
-        android: '10',
-        safari: '6',
-        // if `false`, will show alert for any mobile browser
-        mobile: false
-    }
+    ignoreChoice: false
 })
 ```
 
 Instead of specifying *supported* property you can specify *unsupported* browsers:
 ```js
-badbrowser.init({
+new badbrowser({
     unsupported: {
         // the same as supported.chrome = '40'
         chrome: '39',
