@@ -13,7 +13,7 @@ a {
 a:hover {
 }
 
-</style></head><body><article class="uk-width-7-10 uk-container-center"><h1>Bad Browser</h1><a class="fork-link" href="https://github.com/dvhbru/badbrowser"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"/></a><!-- Place this tag where you want the button to render.--><a class="github-button" href="https://github.com/dvhbru/badbrowser" data-icon="octicon-star" data-count-href="/dvhbru/badbrowser/stargazers" data-count-api="/repos/dvhbru/badbrowser#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star dvhbru/badbrowser on GitHub">Star</a><!-- Place this tag where you want the button to render.--><a class="github-button" href="https://github.com/dvhbru/badbrowser/fork" data-icon="octicon-git-branch" data-count-href="/dvhbru/badbrowser/network" data-count-api="/repos/dvhbru/badbrowser#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork dvhbru/badbrowser on GitHub">Fork</a><!-- Place this tag where you want the button to render.--><a class="github-button" href="https://github.com/dvhbru/badbrowser/issues" data-icon="octicon-issue-opened" data-count-api="/repos/dvhbru/badbrowser#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue dvhbru/badbrowser on GitHub">Issue</a><!-- Place this tag right after the last button or just before your close body tag.--><script id="github-bjs" async="" defer="" src="https://buttons.github.io/buttons.js"></script><p>The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.<pre><code class="bash">npm i @dvhb/badbrowser</code></pre><button class="uk-button uk-button-primary" onclick="demoFull()">Demo (fullscreen)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoModal()">Demo (modal)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoLogo()">Demo (fullscreen + logo)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoCustomTemplate()">Demo (custom templates)</button></p><p><a href="https://github.com/dvhbru/badbrowser/blob/master/LICENSE">MIT License</a>&nbsp; © &nbsp;<a href="https://github.com/dvhbru">dvhb</a></p><p><pre><code class="javascript">
+</style></head><body><article class="uk-width-7-10 uk-container-center"><h1>Bad Browser</h1><a class="fork-link" href="https://github.com/dvhbru/badbrowser"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"/></a><!-- Place this tag where you want the button to render.--><a class="github-button" href="https://github.com/dvhbru/badbrowser" data-icon="octicon-star" data-count-href="/dvhbru/badbrowser/stargazers" data-count-api="/repos/dvhbru/badbrowser#stargazers_count" data-count-aria-label="# stargazers on GitHub" aria-label="Star dvhbru/badbrowser on GitHub">Star</a><!-- Place this tag where you want the button to render.--><a class="github-button" href="https://github.com/dvhbru/badbrowser/fork" data-icon="octicon-git-branch" data-count-href="/dvhbru/badbrowser/network" data-count-api="/repos/dvhbru/badbrowser#forks_count" data-count-aria-label="# forks on GitHub" aria-label="Fork dvhbru/badbrowser on GitHub">Fork</a><!-- Place this tag where you want the button to render.--><a class="github-button" href="https://github.com/dvhbru/badbrowser/issues" data-icon="octicon-issue-opened" data-count-api="/repos/dvhbru/badbrowser#open_issues_count" data-count-aria-label="# issues on GitHub" aria-label="Issue dvhbru/badbrowser on GitHub">Issue</a><!-- Place this tag right after the last button or just before your close body tag.--><script id="github-bjs" async="" defer="" src="https://buttons.github.io/buttons.js"></script><p>The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.<pre><code class="bash">npm i @dvhb/badbrowser</code></pre><button class="uk-button uk-button-primary" onclick="badbrowser.init()">Demo (default)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoFull()">Demo (fullscreen)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoModal()">Demo (modal)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoLogo()">Demo (fullscreen + logo)</button>&nbsp;<button class="uk-button uk-button-primary" onclick="demoCustomTemplate()">Demo (custom templates)</button></p><p><a href="https://github.com/dvhbru/badbrowser/blob/master/LICENSE">MIT License</a>&nbsp; © &nbsp;<a href="https://github.com/dvhbru">dvhb</a></p><p><pre><code class="javascript">
 import badbrowser from '@dvhb/badbrowser'
 
 badbrowser.init({
@@ -28,7 +28,7 @@ badbrowser.init({
     ignoreChoice: false,
     // Min version of browser that will be supported
     supported: {
-        // user of chrome v.39 will see an alert winodw
+        // user of chrome v.39 will see an alert window
         chrome: 42,
         firefox: 38,
         msie: 9,
@@ -40,6 +40,7 @@ badbrowser.init({
     }
 })</code>
 </pre></p></article><script>hljs.initHighlightingOnLoad();
+
 function demoFull() {
     badbrowser.init({
         // if `false` then user's choice will be saved in the cookies
@@ -50,7 +51,7 @@ function demoFull() {
         // Min version of browser that will be supported
 
         supported: {
-            // user of chrome v.39 will see an alert winodw
+            // user of chrome v.39 will see an alert window
             chrome: '100',
             firefox: '100',
             msie: '100',
@@ -71,7 +72,7 @@ function demoModal() {
         fullscreen: false,
         // Min version of browser that will be supported
         supported: {
-            // user of chrome v.39 will see an alert winodw
+            // user of chrome v.39 will see an alert window
             chrome: '100',
             firefox: '100',
             msie: '100',
@@ -93,7 +94,7 @@ function demoLogo() {
         logo: 'img/logo.svg',
         // Min version of browser that will be supported
         supported: {
-            // user of chrome v.39 will see an alert winodw
+            // user of chrome v.39 will see an alert window
             chrome: '100',
             firefox: '100',
             msie: '100',
@@ -114,7 +115,7 @@ function demoCustomTemplate() {
         ignoreChoice: true,
         // Min version of browser that will be supported
         supported: {
-            // user of chrome v.39 will see an alert winodw
+            // user of chrome v.39 will see an alert window
             chrome: '100',
             firefox: '100',
             msie: '100',
