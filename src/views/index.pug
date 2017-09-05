@@ -47,6 +47,8 @@ block content
             | The library checks user's browser and then shows a warning if browser version doesn't fit minimal requirements.
             pre <code class="bash">npm i @dvhb/badbrowser</code>
 
+            button.uk-button.uk-button-primary(onclick='badbrowser.init()') Demo (default)
+            | &nbsp;
             button.uk-button.uk-button-primary(onclick='demoFull()') Demo (fullscreen)
             | &nbsp;
             button.uk-button.uk-button-primary(onclick='demoModal()') Demo (modal)
@@ -76,7 +78,7 @@ block content
                     ignoreChoice: false,
                     // Min version of browser that will be supported
                     supported: {
-                        // user of chrome v.39 will see an alert winodw
+                        // user of chrome v.39 will see an alert window
                         chrome: 42,
                         firefox: 38,
                         msie: 9,
@@ -90,6 +92,7 @@ block content
 
     script.
         hljs.initHighlightingOnLoad();
+
         function demoFull() {
             badbrowser.init({
                 // if `false` then user's choice will be saved in the cookies
@@ -100,7 +103,7 @@ block content
                 // Min version of browser that will be supported
 
                 supported: {
-                    // user of chrome v.39 will see an alert winodw
+                    // user of chrome v.39 will see an alert window
                     chrome: '100',
                     firefox: '100',
                     msie: '100',
@@ -121,7 +124,7 @@ block content
                 fullscreen: false,
                 // Min version of browser that will be supported
                 supported: {
-                    // user of chrome v.39 will see an alert winodw
+                    // user of chrome v.39 will see an alert window
                     chrome: '100',
                     firefox: '100',
                     msie: '100',
@@ -143,7 +146,7 @@ block content
                 logo: 'img/logo.svg',
                 // Min version of browser that will be supported
                 supported: {
-                    // user of chrome v.39 will see an alert winodw
+                    // user of chrome v.39 will see an alert window
                     chrome: '100',
                     firefox: '100',
                     msie: '100',
@@ -164,7 +167,7 @@ block content
                 ignoreChoice: true,
                 // Min version of browser that will be supported
                 supported: {
-                    // user of chrome v.39 will see an alert winodw
+                    // user of chrome v.39 will see an alert window
                     chrome: '100',
                     firefox: '100',
                     msie: '100',
