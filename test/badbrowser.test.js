@@ -54,7 +54,7 @@ describe(`Check supported browser: ${JSON.stringify(supported)}`, () => {
   });
 
   userAgents.forEach((userAgent) => {
-    const bb = new badbrowser({ userAgent, unsupported: supported});
+    const bb = new badbrowser({ userAgent, unsupported: supported });
     const isSupported = bb.check();
 
     it(`Unsupported: ${bb.name} ${bb.version} < min supported version ${bb.minSupportVersion} "${userAgent}"`, () => {
@@ -89,7 +89,6 @@ describe('check badbrowser options fullscreen', () => {
   });
 
 });
-
 
 describe('default supported browsers', () => {
 
@@ -131,4 +130,49 @@ describe('default supported browsers', () => {
     });
   });
 
+});
+
+describe('check: { supported: { mobile } }', () => {
+  const userAgentDesktop = 'Mozilla/5.0 (Windows NT 6.3; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko';
+  const userAgentMobile = 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/7.0.2 Mobile/8H7 Safari/6533.18.5';
+  const userAgentMobileOld = 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5';
+
+  const bb1 = new badbrowser({ userAgent: userAgentDesktop, supported: { mobile: true } });
+  it(`it's desktop browser (${bb1.name} ${bb1.version}), mobile supported`, () => {
+    expect(bb1.check()).toBe(true);
+  });
+
+  const bb2 = new badbrowser({ userAgent: userAgentMobile, supported: { mobile: true } });
+  it(`it's mobile browser (${bb2.name} ${bb2.version}), mobile supported`, () => {
+    expect(bb2.check()).toBe(true);
+  });
+
+  const bb3 = new badbrowser({ userAgent: userAgentMobileOld, supported: { mobile: true } });
+  it(`it's mobile browser (${bb3.name} ${bb3.version}), mobile supported, but old browser`, () => {
+    expect(bb3.check()).toBe(false);
+  });
+
+  const bb4 = new badbrowser({ userAgent: userAgentDesktop, supported: { mobile: false } });
+  it(`it's desktop browser (${bb4.name} ${bb4.version}), mobile unsupported`, () => {
+    expect(bb4.check()).toBe(true);
+  });
+
+  const bb5 = new badbrowser({ userAgent: userAgentMobile, supported: { mobile: false } });
+  it(`it's mobile browser (${bb5.name} ${bb5.version}), mobile unsupported`, () => {
+    expect(bb5.check()).toBe(false);
+  });
+});
+
+describe('check: { unsupported: { mobile } }', () => {
+  const userAgentMobile = 'Mozilla/5.0 (iPhone Simulator; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/7.0.2 Mobile/8H7 Safari/6533.18.5';
+
+  const bb1 = new badbrowser({ userAgent: userAgentMobile, unsupported: { mobile: true } });
+  it(`it's mobile browser (${bb1.name} ${bb1.version}), mobile unsupported`, () => {
+    expect(bb1.check()).toBe(false);
+  });
+
+  const bb2 = new badbrowser({ userAgent: userAgentMobile, unsupported: { mobile: false } });
+  it(`it's mobile browser (${bb2.name} ${bb2.version}), mobile supported`, () => {
+    expect(bb2.check()).toBe(true);
+  });
 });
