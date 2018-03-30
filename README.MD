@@ -1,4 +1,4 @@
-# @dvhb/badbrowser [![Build Status](https://travis-ci.org/dvhbru/badbrowser.svg?branch=master)](https://travis-ci.org/dvhbru/badbrowser)
+# @dvhb/badbrowser [![Build Status](https://travis-ci.org/dvhb/badbrowser.svg?branch=master)](https://travis-ci.org/dvhb/badbrowser)
 
 ## Install
 ```
@@ -6,7 +6,7 @@ npm i @dvhb/badbrowser
 ```
 
 ## Demo
-http://dvhbru.github.io/badbrowser/
+http://dvhb.github.io/badbrowser/
 
 ## Using
 Put html for your custom alert windows in `/alerts/` with this pattern:

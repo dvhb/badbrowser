@@ -4,7 +4,7 @@
   "description": "The library checks user client and shows a warning if the browser version does not meet minimal requirements",
   "repository": {
     "type": "git",
-    "url": "git@github.com:dvhbru/badbrowser.git"
+    "url": "git@github.com:dvhb/badbrowser.git"
   },
   "license": "MIT",
   "main": "dist/badbrowser.js",
