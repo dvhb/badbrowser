@@ -133,10 +133,9 @@ export default class BadBrowser {
   check() {
     if (this.detectedBrowser.mobile && !this.settings.supported.mobile) return false;
 
-    const bowserMinVersions = { [this.currentFlag.replace('_mobile', '')]: this.minSupportVersion };
-
     let isSupported = false;
     try {
+      const bowserMinVersions = { [this.currentFlag.replace('_mobile', '')]: this.minSupportVersion };
       isSupported = this._bowser.check(bowserMinVersions, this.userAgent)
     } catch (e) {
       isSupported = false;
