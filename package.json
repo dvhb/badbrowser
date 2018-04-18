@@ -1,6 +1,6 @@
 {
   "name": "@dvhb/badbrowser",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "The library checks user client and shows a warning if the browser version does not meet minimal requirements",
   "repository": {
     "type": "git",
