@@ -7,3 +7,7 @@ This changelog's template come from [keepachangelog.com](http://keepachangelog.c
 ### Fixed
 - Fix undefined user agent by @Ponayobi
 - Start following [keepachangelog.com](http://keepachangelog.com/) properly.
+
+## [1.2.6] - 2018-07-02
+### Changed
+- Update bowser@1.9.3
