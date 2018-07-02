@@ -25,7 +25,8 @@
     "build:dev": "dvhb-webpack build --app-env=development",
     "build:prod": "dvhb-webpack build --app-env=production",
     "deploy": "gh-pages -d dist",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "prepublish": "npm run build"
   },
   "dependencies": {
     "bowser": "^1.9.3"
