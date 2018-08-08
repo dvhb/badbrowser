@@ -34,10 +34,10 @@ export default class BadBrowser {
       <p>You can continue browsing, but correct work is not guaranteed</p>
       <p>
         <a class="oldbrowser__browserLink" title="Download Google Chrome" style="background-position: 0px 0px;" href="https://www.google.com/chrome/" target="_blank"></a>
-        <a class="oldbrowser__browserLink" title="Download Mozilla Firefox" style="background-position: -60px 0px;" href="https://www.mozilla.org/ru/firefox/new/" target="_blank"></a>
+        <a class="oldbrowser__browserLink" title="Download Mozilla Firefox" style="background-position: -60px 0px;" href="https://www.mozilla.org/en-US/firefox/" target="_blank"></a>
         <a class="oldbrowser__browserLink" title="Download Opera" style="background-position: -120px 0px;" href="http://www.opera.com/download" target="_blank"></a>
         <a class="oldbrowser__browserLink" title="Download Safari" style="background-position: -180px 0px;" href="https://www.apple.com/safari/" target="_blank"></a>
-        <a class="oldbrowser__browserLink" title="Download Internet Explorer" style="background-position: -240px 0px;" href="https://www.microsoft.com/ie/" target="_blank"></a>
+        <a class="oldbrowser__browserLink" title="Download Internet Explorer" style="background-position: -240px 0px;" href="https://support.microsoft.com/en-us/help/17621/" target="_blank"></a>
       </p>
       <a href="javascript:;" class="badbrowser-close">Continue</a>
     `;
