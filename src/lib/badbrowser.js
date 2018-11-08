@@ -15,6 +15,7 @@ export default class BadBrowser {
       logo: false,
       supported: {
         chrome: '42',
+        chromium: '42',
         firefox: '38',
         msie: '9',
         msedge: '12',
