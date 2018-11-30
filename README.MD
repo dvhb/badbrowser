@@ -81,6 +81,27 @@ new badbrowser({
 })
 ```
 
+Also you can get the flag that indicates compatibility of a current browser
+```js
+let bb = new badbrowser({
+    unsupported: {
+        // the same as supported.chrome = '40'
+        chrome: '39',
+        // the same as supported.firefox = '34'
+        firefox: '33',
+        // will show alert for any mobile browser
+        mobile: true
+    }
+})
+
+let isSupported = bb.check();
+```
+You can manually control warning window: \
+Shows warning if it is not added yet and removes warning if it exists.
+```js
+bb.toggleWarning();
+```
+
 ## Browser flags
 
   * `chrome`
