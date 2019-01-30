@@ -108,4 +108,4 @@ new badbrowser({
   * `kMeleon`
 
 # LICENSE
-[MIT License](./LICENSE) © [dvhb](http://dvhb.ru/)
+[MIT License](./LICENSE) © [dvhb](https://dvhb.com/)
