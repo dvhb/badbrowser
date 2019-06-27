@@ -1,32 +1,42 @@
 import bowser from 'bowser';
 
 export default class BadBrowser {
-
-  constructor({ userAgent, supported = {}, unsupported = {}, ignoreChoice = false, fullscreen = true, logo = false, path = false }={}) {
+  constructor({
+    userAgent,
+    supported = {},
+    unsupported = {},
+    ignoreChoice = false,
+    fullscreen = true,
+    logo = false,
+    path = false,
+  } = {}) {
     this._userAgent = userAgent || navigator.userAgent;
     this._bowser = bowser;
     this.detectedBrowser = bowser._detect(this._userAgent);
 
-    this.settings = extend({
-      template: null,
-      path: false,
-      fullscreen: true,
-      ignoreChoice: false,
-      logo: false,
-      supported: {
-        chrome: '42',
-        chromium: '42',
-        firefox: '38',
-        msie: '9',
-        msedge: '12',
-        opera: '26',
-        safari: '6',
-        yandexbrowser: '15',
-        safari_mobile: '7',
-        android: '4',
-        mobile: true
-      }
-    }, { supported, unsupported, ignoreChoice, fullscreen, logo, path });
+    this.settings = extend(
+      {
+        template: null,
+        path: false,
+        fullscreen: true,
+        ignoreChoice: false,
+        logo: false,
+        supported: {
+          chrome: '42',
+          chromium: '42',
+          firefox: '38',
+          msie: '9',
+          msedge: '12',
+          opera: '26',
+          safari: '6',
+          yandexbrowser: '15',
+          safari_mobile: '7',
+          android: '4',
+          mobile: true,
+        },
+      },
+      { supported, unsupported, ignoreChoice, fullscreen, logo, path },
+    );
 
     this.defaultTemplate = `
       <style>
@@ -131,7 +141,7 @@ export default class BadBrowser {
         } else if (typeof this.settings.path == 'string') {
           path = this.settings.path;
         }
-        this.getTemplate(path, (text) => {
+        this.getTemplate(path, text => {
           this.settings.template = text || this.defaultTemplate;
           this.toggleWarning();
         });
@@ -149,11 +159,11 @@ export default class BadBrowser {
    * @returns {string}
    */
   get name() {
-    return `${this.detectedBrowser.name}${this.detectedBrowser.mobile? ' Mobile' : ''}`
+    return `${this.detectedBrowser.name}${this.detectedBrowser.mobile ? ' Mobile' : ''}`;
   }
 
   get version() {
-    return parseFloat(this.detectedBrowser.version)
+    return parseFloat(this.detectedBrowser.version);
   }
 
   get minSupportVersion() {
@@ -180,7 +190,7 @@ export default class BadBrowser {
   }
 
   get minVersions() {
-    return { [this.currentFlag]: this.settings.supported[this.currentFlag] }
+    return { [this.currentFlag]: this.settings.supported[this.currentFlag] };
   }
 
   /**
@@ -203,7 +213,7 @@ export default class BadBrowser {
     let isSupported = false;
     try {
       const bowserMinVersions = { [this.currentFlag.replace('_mobile', '')]: this.minSupportVersion };
-      isSupported = this._bowser.check(bowserMinVersions, this.userAgent)
+      isSupported = this._bowser.check(bowserMinVersions, this.userAgent);
     } catch (e) {
       isSupported = false;
     }
@@ -236,12 +246,12 @@ export default class BadBrowser {
       if (!this.settings.fullscreen) {
         warning.className += ' badbrowser_modal';
         if (warning.addEventListener)
-          warning.addEventListener('click', function (e) {
-            _this.closeWarning(e, this)
+          warning.addEventListener('click', function(e) {
+            _this.closeWarning(e, this);
           });
         else
-          warning.attachEvent('onclick', function (e) {
-            _this.closeWarning(e, this)
+          warning.attachEvent('onclick', function(e) {
+            _this.closeWarning(e, this);
           });
       }
 
@@ -257,10 +267,8 @@ export default class BadBrowser {
 
       let logos = warning.querySelectorAll('.badbrowser__logo');
       for (let i = logos.length - 1; i >= 0; i--) {
-        if (!this.settings.logo)
-          logos[i].parentNode.removeChild(logos[i]);
-        else
-          logos[i].src = this.settings.logo;
+        if (!this.settings.logo) logos[i].parentNode.removeChild(logos[i]);
+        else logos[i].src = this.settings.logo;
       }
 
       this.showCurrentVersion(warningContent);
@@ -269,12 +277,12 @@ export default class BadBrowser {
       for (let i = closeBtns.length - 1; i >= 0; i--) {
         let close = closeBtns[i];
         if (close && close.addEventListener)
-          close.addEventListener('click', function (e) {
-            _this.closeWarning(e, this)
+          close.addEventListener('click', function(e) {
+            _this.closeWarning(e, this);
           });
         else if (close && close.attachEvent)
-          close.attachEvent('onclick', function (e) {
-            _this.closeWarning(e, this)
+          close.attachEvent('onclick', function(e) {
+            _this.closeWarning(e, this);
           });
       }
 
@@ -283,17 +291,15 @@ export default class BadBrowser {
   }
 
   closeWarning(event, _this) {
-    if (event.target !== _this)
-      return;
+    if (event.target !== _this) return;
 
     let expireDate = new Date();
-    expireDate.setTime(expireDate.getTime() + (30 * 24 * 60 * 60 * 1000));
+    expireDate.setTime(expireDate.getTime() + 30 * 24 * 60 * 60 * 1000);
 
     this.toggleWarning();
 
     document.cookie = 'badbrowser_pass=true;' + 'expires=' + expireDate.toUTCString();
   }
-
 
   showCurrentVersion(element) {
     let browserEl = element.querySelector('.badbrowser-user-browser');
@@ -307,9 +313,12 @@ export default class BadBrowser {
     if (this.settings.ignoreChoice) return;
     let value = '; ' + document.cookie;
     let parts = value.split('; ' + name + '=');
-    if (parts.length == 2) return parts.pop().split(';').shift();
+    if (parts.length == 2)
+      return parts
+        .pop()
+        .split(';')
+        .shift();
   }
-
 
   /**
    * Cross-browser XMLHttpRequest
@@ -346,11 +355,9 @@ export default class BadBrowser {
     }
     let request = this.getXmlHttp();
     if (request) {
-      request.onreadystatechange = function () {
+      request.onreadystatechange = function() {
         if (request.readyState == 4) {
-          request.status == 200
-            ? callback(request.responseText)
-            : callback(null);
+          request.status == 200 ? callback(request.responseText) : callback(null);
         }
       };
       request.open('GET', path, true);

@@ -15,15 +15,15 @@
     "node": ">=6"
   },
   "devDependencies": {
-    "@dvhb/webpack": "1.4.2",
-    "gh-pages": "^1.0.0",
-    "jest": "^20.0.4"
+    "@dvhb/cli": "^1.8.0",
+    "gh-pages": "^2.0.1",
+    "jest": "^24.8.0"
   },
   "scripts": {
-    "dev": "dvhb-webpack server",
+    "dev": "dvhb server",
     "build": "npm run build:prod",
-    "build:dev": "dvhb-webpack build --app-env=development",
-    "build:prod": "dvhb-webpack build --app-env=production",
+    "build:dev": "dvhb build --app-env=development",
+    "build:prod": "dvhb build --app-env=production",
     "deploy": "gh-pages -d dist",
     "test": "jest --verbose",
     "prepublish": "npm run build"
