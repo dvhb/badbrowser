@@ -1,17 +1,80 @@
+<style>
+    .badbrowser {
+        background: #fff;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        white-space: nowrap;
+        overflow: auto
+    }
+
+    .badbrowser_modal {
+        background: rgba(0, 0, 0, .25)
+    }
+
+    .badbrowser_modal .badbrowser__content {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        background: #fff;
+        padding: 15px
+    }
+
+    .badbrowser__logo {
+        width: 50%
+    }
+
+    .badbrowser__content,
+    .badbrowser__helper {
+        display: inline-block;
+        vertical-align: middle
+    }
+
+    .badbrowser__helper {
+        height: 100%;
+        margin-right: -.25em
+    }
+
+    .badbrowser__content {
+        white-space: normal
+    }
+
+    .oldbrowser__browserLink {
+        display: inline-block;
+        width: 60px;
+        height: 66px;
+        margin: 0 10px;
+        background: none;
+    }
+
+    .oldbrowser__browserLink img {
+        display: block;
+        max-width: 100%;
+    }
+</style>
+
 <h1>You are using an outdated browser</h1>
 <h3 class="badbrowser-user-browser"></h3>
 <p>You can continue browsing, but proper work is not guaranteed</p>
 <p>Follow one of this links to update your browser</p>
 <p>
-    <a class="oldbrowser__browserLink" title="Download Google Chrome" style="background-position: 0px 0px;"
-       href="https://www.google.com/chrome/" target="_blank"></a>
-    <a class="oldbrowser__browserLink" title="Download Mozilla Firefox" style="background-position: -60px 0px;"
-       href="https://www.mozilla.org/ru/firefox/new/" target="_blank"></a>
-    <a class="oldbrowser__browserLink" title="Download Opera" style="background-position: -120px 0px;"
-       href="http://www.opera.com/download" target="_blank"></a>
-    <a class="oldbrowser__browserLink" title="Download Safari" style="background-position: -180px 0px;"
-       href="https://www.apple.com/safari/" target="_blank"></a>
-    <a class="oldbrowser__browserLink" title="Download Internet Explorer" style="background-position: -240px 0px;"
-       href="https://www.microsoft.com/ie/" target="_blank"></a>
+    <a class="oldbrowser__browserLink" title="Download Google Chrome" href="https://www.google.com/chrome/" target="_blank">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/46.1.0/chrome/chrome_64x64.png" alt="Google Chrome">
+    </a>
+    <a class="oldbrowser__browserLink" title="Download Mozilla Firefox" href="https://www.mozilla.org/en-US/firefox/" target="_blank">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/46.1.0/firefox/firefox_64x64.png" alt="Mozilla Firefox">
+    </a>
+    <a class="oldbrowser__browserLink" title="Download Opera" href="http://www.opera.com/download" target="_blank">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/46.1.0/opera/opera_64x64.png" alt="Opera">
+    </a>
+    <a class="oldbrowser__browserLink" title="Download Safari" href="https://www.apple.com/safari/" target="_blank">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/46.1.0/safari/safari_64x64.png" alt="Safari">
+    </a>
+    <a class="oldbrowser__browserLink" title="Download Internet Explorer" href="https://support.microsoft.com/en-us/help/17621/" target="_blank">
+        <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/46.1.0/archive/internet-explorer_9-11/internet-explorer_9-11_64x64.png" alt="Internet Explorer">
+    </a>
 </p>
 <a href="javascript:;" class="badbrowser-close">Close</a>
+
