@@ -29,6 +29,6 @@
     "prepublish": "npm run build"
   },
   "dependencies": {
-    "bowser": "^1.9.3"
+    "bowser": "^2.5.2"
   }
 }
